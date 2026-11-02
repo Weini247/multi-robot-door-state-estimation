@@ -1,0 +1,33 @@
+{
+  "schema": "argus-preregistration-amendment-v1",
+  "amends": {
+    "path": "configs/experiments/preregistration_v1.json",
+    "sha256": "3c027103e96ce887f50143ab74e66de219c0fe27bb132e620c73a1108faa3144"
+  },
+  "follows": {
+    "path": "configs/experiments/preregistration_v1_amendment_01.json",
+    "sha256": "bf0303cfef3e9dc2f509cfb50a1ca7ee23b078312a33043ffbed5eac4be01e4e"
+  },
+  "date": "2026-11-02",
+  "authority": "owner delegated the decisions to the agent ('nach wissenschaftlicher Praxis selbst entscheiden'); committed before any test episode",
+  "trigger": "re-audit after amendment 01 (docs/audits/E08-T02_PRERUN_REAUDIT.md, findings F1 and F2)",
+  "test_data_seen": false,
+  "decisions": {
+    "D1_tuning_v2_resume": {
+      "deviation": "validation tuning v2 stopped after 5 of 10 buildings at the 2 h wall projection (progress.log: 'STOP before loop-20000283: projected budget exceeded'); with 5 < 8 complete buildings the preregistered rule would have returned 'inconclusive'. The run was resumed with the same grid, seeds and buildings and completed the preregistered 10 buildings; the second session's counters started at zero.",
+      "cause": "concurrent CPU load from another session on the same host (wall per building 735-2101 s in the first session; the projection from those buildings exceeded the cap); CPU stayed within its cap (7.11 h of 8 h), wall totalled 2.63 h of 2 h",
+      "decision": "accepted as a deviation of the stop rule, not only of the wall cap; the selection uses the 10 complete buildings",
+      "reason": "the stop was caused by the host, not by the data; resuming to the preregistered building count with unchanged seeds involves no data-driven choice, and no tuning result was looked at before the resume",
+      "sensitivity": "the selection is also reported on the 5 buildings completed before the stop (descriptive; it does not replace the primary selection). Result, computed before any test episode: same candidate repair h5.0 and same H2 control cross_rank m1.5f1.0; dynamics_ids p20, no_comm c0 and ttl_ids t150p50 unchanged; age_revisit a150 instead of a1200 and naive_gossip p20 instead of p200"
+    },
+    "D2_repair_lag": {
+      "replaces": "amendment 01, O6_definitions.repair_lag",
+      "unit": "(episode, robot, passage, true change) for the candidate and the H2 control, in dynamic cells only",
+      "event": "the first run of 3 consecutive answered probes of that robot on that passage after the change, each giving probability >= 0.8 to the true current state (p_open if open, 1 - p_open if closed); the lag is the time of the first probe of that run minus the change time",
+      "censoring": "at the next change of that passage, at the horizon, or at the failure tick of a failed episode, whichever comes first",
+      "estimand": "Kaplan-Meier curve per method, restricted mean lag up to tau = 30 s (shorter than both mean dwell times 1/0.02 s and 1/0.01 s), censoring share reported",
+      "secondary": "passage-level lag pooling the probes of all robots of the episode (ordered by time, then robot id), same event and censoring rules",
+      "status": "secondary and descriptive; with about 7 probes per robot and passage per episode heavy censoring is expected, measured on calib (about 90 %), and no claim depends on the lag"
+    }
+  }
+}

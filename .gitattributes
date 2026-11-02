@@ -1,0 +1,2 @@
+# Evidence is verified by SHA-256 of exact bytes: git must never convert line endings.
+* -text

@@ -1,0 +1,58 @@
+{
+  "schema": "argus-preregistration-amendment-v1",
+  "amends": {
+    "path": "configs/experiments/preregistration_v1.json",
+    "sha256": "3c027103e96ce887f50143ab74e66de219c0fe27bb132e620c73a1108faa3144"
+  },
+  "date": "2026-11-02",
+  "authority": "owner delegated the decisions to the agent ('nach wissenschaftlicher Praxis selbst entscheiden'); committed before any test episode and before validation tuning v2",
+  "trigger": "pre-run audit docs/audits/E08-T02_PRERUN_AUDIT.md (open items O1-O8)",
+  "test_data_seen": false,
+  "decisions": {
+    "O1_channel_fairness": {
+      "decision": "fix before the test",
+      "change": "EvidenceId.episode, frame ids, message bytes and per-frame loss keys use protocol.transport_id(building, replicate), a method- and cell-neutral key of fixed length, instead of the episode id that named method and config",
+      "consequence": "validation tuning is rerun as v2 with the unchanged grid, budget and selection rule; the calibration pilot is rerun as v2 with the v2 selection; v1 results stay committed and superseded, never mixed",
+      "reason": "frame length and drop draws depended on the method name (repair about 2 % more frames than dynamics_ids under the byte budget); the v1 control margin (0.001) is smaller than this bias"
+    },
+    "O2_failure_rule": {
+      "decision": "keep the preregistered rule as primary",
+      "primary": "probes answered before the failure tick keep their loss; every later probe gets the loss of the default decision 'closed' against the true exogenous state",
+      "sensitivity_added": "spec M6 rule: maximal request loss (4) for every probe after the failure tick; plus pairs with any failure excluded (already preregistered)",
+      "invalid_status": "runner status 'invalid' (ImpossibleEvidence) is an episode failure under the primary rule",
+      "invalid_scenario": "a building whose scenario cannot be regenerated, fails validation or has an empty coverage target set is replaced by the next unused entry of the same list and family",
+      "reason": "the frozen rule must not be changed after calibration data showed its effect; the stricter spec rule is reported, not chosen afterwards"
+    },
+    "O3_coverage": {
+      "decision": "primary coverage for the H2 claim = final coverage at the horizon of the target set 'closed' (grid cells free with every passage closed, fixed before the run)",
+      "estimand": "relative coverage loss = 1 - mean_b Cov_candidate / mean_b Cov_control, cells weighted equally, families 50/50, same paired cluster bootstrap as the gain; claim needs its upper CI bound <= 0.05",
+      "secondary": "time-averaged coverage (AUC) and the target set 'open'",
+      "reason": "spec M6 defines coverage as the share of fixed free target cells seen at least once; AUC is listed there as additional"
+    },
+    "O4_infrastructure": {
+      "decision": "a hard-timeout kill or a crash of the worker process is an infrastructure event: kept in infra.jsonl, the batch stops, the cause is checked, the episode reruns with the same seeds",
+      "repeat": "a key killed a second time is a reproducible hang and becomes a failure row with every probe defaulted to 'closed' (failure tick 0)",
+      "breaker_rows": "rows written before the breaker trips stay results; only if the cause is shown to be infrastructure (disk, import, host) are they quarantined with a logged reason and rerun"
+    },
+    "O5_sensitivity": {
+      "losses": "2:1 and 3:1 by re-scoring the recorded probabilities with the matching decision threshold (decision-level sensitivity); policies keep 4:1; labelled as such",
+      "rho_0_1": "separate frozen batch after the primary batch with its own budget approval; not part of the primary GO",
+      "reason": "keeps the primary batch within budget; a policy-level loss sensitivity would need a re-tuning per loss ratio"
+    },
+    "O6_definitions": {
+      "js": "Jensen-Shannon between candidate and H2-control probabilities on the same probe (same building, cell, replicate, tick, robot, passage)",
+      "repair_lag": "per (robot, passage) on that robot's probes of the passage after each true change, threshold 0.8, 3 consecutive probes, censored by the next change or the horizon; Kaplan-Meier and restricted mean, censoring rate reported",
+      "h1": "interaction contrasts primary for the candidate, also reported for the H2 control; other methods descriptive",
+      "pair": "(building, cell, replicate) of candidate and H2 control",
+      "runtime": "per-episode wall and CPU quantiles; per-decision policy runtime is not recorded (limitation)"
+    },
+    "O7_b_reading": {
+      "decision": "sigma_Delta on the gain scale (delta-method influence of the ratio gain), larger of pooled and family-stratified",
+      "reason": "the claim threshold (0.10) and the CI width (0.05) are on the gain scale; the absolute loss difference has another scale"
+    },
+    "O8_budget": {
+      "approval": "the owner approves the test budget separately; recommendation from the measured cost model with 15 % headroom",
+      "truncation": "if a cap stops the batch before B, the analysis uses the largest even prefix completed in both lists; below 60 the result is 'inconclusive by design'; never topped up"
+    }
+  }
+}

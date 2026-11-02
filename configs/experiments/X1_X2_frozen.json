@@ -1,0 +1,196 @@
+{
+  "analysis": {
+    "decisions": {
+      "D1_tuning_v2_resume": {
+        "cause": "concurrent CPU load from another session on the same host (wall per building 735-2101 s in the first session; the projection from those buildings exceeded the cap); CPU stayed within its cap (7.11 h of 8 h), wall totalled 2.63 h of 2 h",
+        "decision": "accepted as a deviation of the stop rule, not only of the wall cap; the selection uses the 10 complete buildings",
+        "deviation": "validation tuning v2 stopped after 5 of 10 buildings at the 2 h wall projection (progress.log: 'STOP before loop-20000283: projected budget exceeded'); with 5 < 8 complete buildings the preregistered rule would have returned 'inconclusive'. The run was resumed with the same grid, seeds and buildings and completed the preregistered 10 buildings; the second session's counters started at zero.",
+        "reason": "the stop was caused by the host, not by the data; resuming to the preregistered building count with unchanged seeds involves no data-driven choice, and no tuning result was looked at before the resume",
+        "sensitivity": "the selection is also reported on the 5 buildings completed before the stop (descriptive; it does not replace the primary selection). Result, computed before any test episode: same candidate repair h5.0 and same H2 control cross_rank m1.5f1.0; dynamics_ids p20, no_comm c0 and ttl_ids t150p50 unchanged; age_revisit a150 instead of a1200 and naive_gossip p20 instead of p200"
+      },
+      "D2_repair_lag": {
+        "censoring": "at the next change of that passage, at the horizon, or at the failure tick of a failed episode, whichever comes first",
+        "estimand": "Kaplan-Meier curve per method, restricted mean lag up to tau = 30 s (shorter than both mean dwell times 1/0.02 s and 1/0.01 s), censoring share reported",
+        "event": "the first run of 3 consecutive answered probes of that robot on that passage after the change, each giving probability >= 0.8 to the true current state (p_open if open, 1 - p_open if closed); the lag is the time of the first probe of that run minus the change time",
+        "replaces": "amendment 01, O6_definitions.repair_lag",
+        "secondary": "passage-level lag pooling the probes of all robots of the episode (ordered by time, then robot id), same event and censoring rules",
+        "status": "secondary and descriptive; with about 7 probes per robot and passage per episode heavy censoring is expected, measured on calib (about 90 %), and no claim depends on the lag",
+        "unit": "(episode, robot, passage, true change) for the candidate and the H2 control, in dynamic cells only"
+      },
+      "O2_failure_rule": {
+        "decision": "keep the preregistered rule as primary",
+        "invalid_scenario": "a building whose scenario cannot be regenerated, fails validation or has an empty coverage target set is replaced by the next unused entry of the same list and family",
+        "invalid_status": "runner status 'invalid' (ImpossibleEvidence) is an episode failure under the primary rule",
+        "primary": "probes answered before the failure tick keep their loss; every later probe gets the loss of the default decision 'closed' against the true exogenous state",
+        "reason": "the frozen rule must not be changed after calibration data showed its effect; the stricter spec rule is reported, not chosen afterwards",
+        "sensitivity_added": "spec M6 rule: maximal request loss (4) for every probe after the failure tick; plus pairs with any failure excluded (already preregistered)"
+      },
+      "O3_coverage": {
+        "decision": "primary coverage for the H2 claim = final coverage at the horizon of the target set 'closed' (grid cells free with every passage closed, fixed before the run)",
+        "estimand": "relative coverage loss = 1 - mean_b Cov_candidate / mean_b Cov_control, cells weighted equally, families 50/50, same paired cluster bootstrap as the gain; claim needs its upper CI bound <= 0.05",
+        "reason": "spec M6 defines coverage as the share of fixed free target cells seen at least once; AUC is listed there as additional",
+        "secondary": "time-averaged coverage (AUC) and the target set 'open'"
+      },
+      "O4_infrastructure": {
+        "breaker_rows": "rows written before the breaker trips stay results; only if the cause is shown to be infrastructure (disk, import, host) are they quarantined with a logged reason and rerun",
+        "decision": "a hard-timeout kill or a crash of the worker process is an infrastructure event: kept in infra.jsonl, the batch stops, the cause is checked, the episode reruns with the same seeds",
+        "repeat": "a key killed a second time is a reproducible hang and becomes a failure row with every probe defaulted to 'closed' (failure tick 0)"
+      },
+      "O5_sensitivity": {
+        "losses": "2:1 and 3:1 by re-scoring the recorded probabilities with the matching decision threshold (decision-level sensitivity); policies keep 4:1; labelled as such",
+        "reason": "keeps the primary batch within budget; a policy-level loss sensitivity would need a re-tuning per loss ratio",
+        "rho_0_1": "separate frozen batch after the primary batch with its own budget approval; not part of the primary GO"
+      },
+      "O6_definitions": {
+        "h1": "interaction contrasts primary for the candidate, also reported for the H2 control; other methods descriptive",
+        "js": "Jensen-Shannon between candidate and H2-control probabilities on the same probe (same building, cell, replicate, tick, robot, passage)",
+        "pair": "(building, cell, replicate) of candidate and H2 control",
+        "repair_lag": "see D2_repair_lag",
+        "runtime": "per-episode wall and CPU quantiles; per-decision policy runtime is not recorded (limitation)"
+      },
+      "O7_b_reading": {
+        "decision": "sigma_Delta on the gain scale (delta-method influence of the ratio gain), larger of pooled and family-stratified",
+        "reason": "the claim threshold (0.10) and the CI width (0.05) are on the gain scale; the absolute loss difference has another scale"
+      },
+      "O8_budget": {
+        "approval": "the owner approves the test budget separately; recommendation from the measured cost model with 15 % headroom",
+        "truncation": "if a cap stops the batch before B, the analysis uses the largest even prefix completed in both lists; below 60 the result is 'inconclusive by design'; never topped up"
+      }
+    },
+    "source": [
+      "configs/experiments/preregistration_v1_amendment_01.json",
+      "configs/experiments/preregistration_v1_amendment_02.json"
+    ]
+  },
+  "cells": [
+    "sta-ind-direct",
+    "sta-ind-relay",
+    "sta-cor-direct",
+    "sta-cor-relay",
+    "dyn-ind-direct",
+    "dyn-ind-relay",
+    "dyn-cor-direct",
+    "dyn-cor-relay"
+  ],
+  "cost_model": {
+    "cpu_s_per_episode": {
+      "age_revisit": 10.968,
+      "cross_rank": 12.687,
+      "dynamics_ids": 15.212,
+      "naive_gossip": 11.146,
+      "no_comm": 12.087,
+      "repair": 14.722,
+      "ttl_ids": 11.621
+    },
+    "source": "docs/results/test_probe_calib_v3 (test worker, calib only)",
+    "wall_per_cpu": 0.3631,
+    "workers": 5
+  },
+  "episode": {
+    "failure_rule": "kept as failure; its decision loss from the failure tick on is that of the default decision 'closed'; reported per method",
+    "hard_timeout_s": 900.0,
+    "seeds": "protocol.episode_seeds(building_id, replicate)",
+    "soft_timeout_s": 600.0,
+    "trace": true,
+    "worker": "argus.experiments.runset.test_episode"
+  },
+  "methods": {
+    "h2_control": "cross_rank",
+    "selected": {
+      "age_revisit": {
+        "config_id": "a1200",
+        "params": {
+          "max_age_ticks": 1200
+        },
+        "role": "control"
+      },
+      "cross_rank": {
+        "config_id": "m1.5f1.0",
+        "params": {
+          "m_r": 1.5,
+          "position_filter_m": 1.0
+        },
+        "role": "control"
+      },
+      "dynamics_ids": {
+        "config_id": "p20",
+        "params": {
+          "send_period_ticks": 20
+        },
+        "role": "control"
+      },
+      "naive_gossip": {
+        "config_id": "p200",
+        "params": {
+          "send_period_ticks": 200
+        },
+        "role": "control"
+      },
+      "no_comm": {
+        "config_id": "c0",
+        "params": {},
+        "role": "control"
+      },
+      "repair": {
+        "config_id": "h5.0",
+        "params": {
+          "horizon_s": 5.0
+        },
+        "role": "candidate"
+      },
+      "ttl_ids": {
+        "config_id": "t150p50",
+        "params": {
+          "send_period_ticks": 50,
+          "ttl_ticks": 150
+        },
+        "role": "control"
+      }
+    }
+  },
+  "schema": "argus-x1x2-frozen-v1",
+  "sources": {
+    "amendment": {
+      "path": "configs/experiments/preregistration_v1_amendment_01.json",
+      "sha256": "bf0303cfef3e9dc2f509cfb50a1ca7ee23b078312a33043ffbed5eac4be01e4e"
+    },
+    "amendment_02": {
+      "path": "configs/experiments/preregistration_v1_amendment_02.json",
+      "sha256": "23892bf4f7fc6212a2b786fb396823c327aded1f48501027a6201d350ddd377a"
+    },
+    "pilot_results": {
+      "path": "docs/results/calib_pilot_v2/results.jsonl",
+      "sha256": "e1c7d483fa78b0899c107ca587eb43e0a8fd51450650a818c76cc20f7abd04dd"
+    },
+    "preregistration": {
+      "path": "configs/experiments/preregistration_v1.json",
+      "sha256": "3c027103e96ce887f50143ab74e66de219c0fe27bb132e620c73a1108faa3144"
+    },
+    "probe_results": {
+      "path": "docs/results/test_probe_calib_v3/results.jsonl",
+      "sha256": "284600e83f9e1199a23b66451b90ab7b24fe5db0d5105520ee100dd21abed8ba"
+    },
+    "split_manifest": {
+      "path": "configs/splits/splits_v1.json",
+      "sha256": "fde9b578d5442b331fb1f4ccaf80b1e4ef595e02e54238f8835915606d06d89b"
+    },
+    "validation_results": {
+      "path": "docs/results/val_tuning_v2.jsonl",
+      "sha256": "31a5428ada24d2f87adf1fd4fec16b69469abfdc47ac26d54d9f2312bd470293"
+    }
+  },
+  "status": "frozen before any test episode; a run also needs configs/experiments/X1_X2_approval.json",
+  "test": {
+    "b_minimum": 60,
+    "b_planned": 80,
+    "budget_rule": "B = largest even number <= b_planned whose projected CPU and wall hours fit the approved budget; below b_minimum the batch is not run ('inconclusive by design')",
+    "lists": [
+      "id_test",
+      "ood_test"
+    ],
+    "order": "positions 0..B-1, per position id_test then ood_test; within a building replicate, method, cell",
+    "replacement": "an invalid scenario is replaced by the next unused entry of the same list and family; logged",
+    "replicates": 2,
+    "sd_delta": 0.112758
+  }
+}

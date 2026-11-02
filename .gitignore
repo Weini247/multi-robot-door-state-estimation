@@ -1,0 +1,25 @@
+# Environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Private local configuration (path mapping, secrets)
+.local/
+.env
+*.env
+*.secret
+*.key
+
+# Large run data; manifests and hashes are archived separately
+runs/
+
+# Atomic-write leftovers
+*.tmp
+
+# Large assets (3D scenes, model weights) stay outside git until an ADR says otherwise
+assets/
+*.pt
+*.ckpt

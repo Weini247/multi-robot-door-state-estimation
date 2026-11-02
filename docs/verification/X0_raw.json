@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "argus_version": "0.1.0",
+  "cases": [
+    {
+      "id": "M1-01",
+      "model": "M1",
+      "kind": "exact",
+      "description": "CTMC propagate, spec value .4+.5/e",
+      "inputs": {
+        "rate_01": 0.2,
+        "rate_10": 0.3,
+        "p": 0.9,
+        "dt_seconds": 2.0
+      },
+      "output": 0.5839397205857212
+    },
+    {
+      "id": "M1-02",
+      "model": "M1",
+      "kind": "exact",
+      "description": "CTMC long horizon reaches stationary .4",
+      "inputs": {
+        "rate_01": 0.2,
+        "rate_10": 0.3,
+        "p": 0.9,
+        "dt_seconds": 1000.0
+      },
+      "output": 0.4
+    },
+    {
+      "id": "M1-03",
+      "model": "M1",
+      "kind": "exact",
+      "description": "CTMC zero rates keep p",
+      "inputs": {
+        "rate_01": 0.0,
+        "rate_10": 0.0,
+        "p": 0.73,
+        "dt_seconds": 100.0
+      },
+      "output": 0.73
+    },
+    {
+      "id": "M1-04",
+      "model": "M1",
+      "kind": "exact",
+      "description": "CTMC tiny step keeps its increment",
+      "inputs": {
+        "rate_01": 0.2,
+        "rate_10": 0.3,
+        "p": 0.0,
+        "dt_seconds": 1e-12
+      },
+      "output": 1.9999999999995e-13
+    },
+    {
+      "id": "M1-05",
+      "model": "M1",
+      "kind": "exact",
+      "description": "CTMC transition matrix",
+      "inputs": {
+        "rate_01": 0.2,
+        "rate_10": 0.3,
+        "dt_seconds": 2.0
+      },
+      "output": [
+        [
+          0.7471517764685769,
+          0.25284822353142306
+        ],
+        [
+          0.37927233529713456,
+          0.6207276647028654
+        ]
+      ]
+    },
+    {
+      "id": "M2-01",
+      "model": "M2/M3",
+      "kind": "exact",
+      "description": "shared bias, one measurement y=1",
+      "inputs": {
+        "prior_open": 0.5,
+        "rho": 0.1,
+        "q": 0.05,
+        "observations": [
+          1
+        ]
+      },
+      "output": 0.8599999999999999
+    },
+    {
+      "id": "M2-02",
+      "model": "M2/M3",
+      "kind": "exact",
+      "description": "shared bias, two distinct measurements y=1,1",
+      "inputs": {
+        "prior_open": 0.5,
+        "rho": 0.1,
+        "q": 0.05,
+        "observations": [
+          1,
+          1
+        ]
+      },
+      "output": 0.8977900552486188
+    },
+    {
+      "id": "M2-03",
+      "model": "M2/M3",
+      "kind": "exact",
+      "description": "shared bias, conflicting measurements y=1,0",
+      "inputs": {
+        "prior_open": 0.5,
+        "rho": 0.1,
+        "q": 0.05,
+        "observations": [
+          1,
+          0
+        ]
+      },
+      "output": 0.5
+    },
+    {
+      "id": "M2-04",
+      "model": "M2/M3",
+      "kind": "misspecified",
+      "description": "naive independence with the same marginal error e=.14 (overconfident)",
+      "inputs": {
+        "prior_open": 0.5,
+        "error": 0.14,
+        "observations": [
+          1,
+          1
+        ]
+      },
+      "output": 0.9741833508956798
+    },
+    {
+      "id": "M2-05",
+      "model": "M2/M3",
+      "kind": "error",
+      "description": "contradicting readings of a perfect unbiased sensor",
+      "inputs": {
+        "prior_open": 0.5,
+        "rho": 0.0,
+        "q": 0.0,
+        "observations": [
+          1,
+          0
+        ]
+      },
+      "output": "ImpossibleEvidence: marginal probability of the evidence is zero"
+    },
+    {
+      "id": "M3-01",
+      "model": "M3",
+      "kind": "exact",
+      "description": "joint (z,g) filter, three measurements",
+      "inputs": {
+        "prior": [
+          0.45,
+          0.05,
+          0.45,
+          0.05
+        ],
+        "rates_z": [
+          0.2,
+          0.3
+        ],
+        "rates_g": [
+          0.01,
+          0.09
+        ],
+        "q": 0.05,
+        "observations": [
+          1,
+          0,
+          1
+        ],
+        "gap_seconds": 0.7
+      },
+      "output": [
+        0.12942623349847868,
+        0.1095898472443029,
+        0.7495796953966561,
+        0.011404223860562229
+      ]
+    },
+    {
+      "id": "M3-02",
+      "model": "M3",
+      "kind": "exact",
+      "description": "joint filter static limit equals 325/362",
+      "inputs": {
+        "prior": [
+          0.45,
+          0.05,
+          0.45,
+          0.05
+        ],
+        "rates_z": [
+          0.0,
+          0.0
+        ],
+        "rates_g": [
+          0.0,
+          0.0
+        ],
+        "q": 0.05,
+        "observations": [
+          1,
+          1
+        ],
+        "gap_seconds": 0.7
+      },
+      "output": [
+        0.0024861878453038707,
+        0.09972375690607738,
+        0.8975138121546962,
+        0.00027624309392265185
+      ]
+    }
+  ]
+}

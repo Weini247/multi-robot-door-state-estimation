@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "baseline": "cross-rank",
+  "audit_reference": "A:13",
+  "doi": "10.1007/s10514-025-10234-3",
+  "source_read": {
+    "kind": "authors_preprint",
+    "fetched": "2026-11-02",
+    "bytes": 8325366,
+    "sha256": "4608d74e3f1af242bc3b31a2a7cadb47c419fc020e3ec1946fcf5d6164b8e1ee",
+    "stored_in_repository": false
+  },
+  "journal_version_read": false,
+  "original_code": {"status": "not_found", "searches": 2, "statement_in_text": false},
+  "license": "not_stated",
+  "port_kind": "adaptation_from_description",
+  "reproduction_claim": false,
+  "variant": "CR-ESR_p",
+  "excluded_variants": {"CR-TSP_p": "not ported (scope)", "CR-SR_m,p": "requires map sharing"},
+  "parameters": {"m_r_m": 1.5, "position_filter_m": 0.5},
+  "tunable_on_validation": ["m_r_m", "position_filter_m"],
+  "communication": "positions only, charged frames",
+  "belief": "fixed-lag-joint-belief",
+  "differences": [
+    "task: exploration time/coverage in static tunnels vs decision loss on dynamic doors",
+    "geometry: 3D LiDAR subterranean maps vs 2D greybox with idealised map scan",
+    "waypoints: paper waypoint generation vs ARGUS frontier cells",
+    "timing: real asynchronous radio vs integer ticks with 1 s decisions",
+    "channel: real 868/915 MHz radios vs Gilbert-Elliott loss and rolling budget",
+    "results: paper numbers are not comparable and never quoted as ARGUS results"
+  ]
+}

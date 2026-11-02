@@ -1,0 +1,47 @@
+[project]
+name = "argus"
+version = "0.1.0"
+description = "ARGUS — Decision-Relevant Belief Repair in Dynamic Multi-Robot Exploration"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=2.4,<2.6",
+]
+
+[project.scripts]
+argus = "argus.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9,<10",
+    "ruff>=0.14",
+    "mypy>=1.18",
+    # Independent matrix oracle for tests (scipy.linalg.expm); not a core import.
+    "scipy>=1.17,<1.18",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv]
+# Use the verified host interpreter; never download a managed Python silently.
+python-preference = "only-system"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The backlog prescribes tests/eNN/test_tMM.py, so basenames repeat across stages.
+addopts = ["--import-mode=importlib"]
+# tools/ and reference/ are imported by the handoff test suite from the repo root.
+pythonpath = ["."]

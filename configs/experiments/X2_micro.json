@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment": "X2_micro",
+  "status": "preregistered before any result was computed (ARGUS-E06-T03)",
+  "purpose": "Exact micro check of the repair mechanism: does a re-observation carry more decision value when the shared sensor error has decorrelated, how do costs shift it, and does sending already-held evidence carry value? A mechanism check under the nominal model, not evidence for H2 or H3.",
+  "setting": {
+    "door_rates": [0.0, 0.0],
+    "prior_open": 0.5,
+    "first_reading": 1,
+    "private_error": 0.05,
+    "bias_probability": 0.1,
+    "marginal_error": 0.14,
+    "reobservation_delay_s": 5.0,
+    "horizon_s": 5.0,
+    "distance_m": 2.0,
+    "delivery_probability": 0.9
+  },
+  "factors": {
+    "bias": {
+      "persistent": [0.0, 0.0],
+      "decorrelated": [0.5, 4.5]
+    },
+    "costs": {
+      "zero": [0.0, 0.0, 0.0],
+      "pilot": [0.05, 0.01, 0.01]
+    },
+    "losses": {
+      "symmetric": [1.0, 1.0],
+      "pilot": [4.0, 1.0]
+    },
+    "receiver": ["holds_reading", "uncertain_history"]
+  },
+  "expectations": [
+    {"id": "E1", "statement": "With zero costs, re-observation value is at least as large under decorrelated bias as under persistent bias, for both loss settings."},
+    {"id": "E2", "statement": "Pilot costs lower each re-observation value by exactly c(a) = 0.05*2 + 0.01*5 + 0.01 = 0.16 relative to zero costs."},
+    {"id": "E3", "statement": "Sending a reading the receiver already holds has value 0."},
+    {"id": "E4", "statement": "Sending to a receiver with uncertain history has value >= 0 and equals delivery_probability times the decision value for a receiver without the reading."},
+    {"id": "E5", "statement": "Under persistent bias with symmetric losses and zero costs, the second reading still has positive value because the private error q = 0.05 is independent; it does not vanish."}
+  ],
+  "tolerances": {
+    "theory_abs": 1e-12,
+    "decorrelation_remainder": "exp(-(mu01 + mu10) * delay) * rho * (1 - rho) bounds the deviation from the independent-g limit"
+  }
+}
