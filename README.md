@@ -40,11 +40,10 @@ The question: *when does a new, as-independent-as-possible observation improve t
 The machine-readable preregistration and its amendments are in [`configs/experiments/`](configs/experiments/):
 - `preregistration_v1.json`;
 - amendment 01: channel fairness, coverage definition, infrastructure failures, sensitivity analyses;
-- amendment 02: a documented deviation in validation tuning and a precise repair-lag definition.
-
+- amendment 02: a documented deviation in validation tuning and a precise repair-lag definition;
 - amendment 03: rules the analysis needs that the preregistration left open (replacements, failed episodes, the Holm family, zero-loss controls).
 
-All amendments were written before any test episode. `X1_X2_frozen.json` is the frozen run set, and it includes the hashes of the analysis code (`src/argus/evaluation/statistics.py`, `tools/analyze_x1x2.py`). The analysis refuses to run if its code differs, if the batch is unfinished, or if the source tree changed. A dry run on calibration data is in `docs/results/ANALYSIS_DRY_RUN_calib_v3.md`; it tests the pipeline and is not a result. It is recomputed from the committed evidence, and the test runner refuses to start if anything differs.
+All amendments were written before any test episode. `X1_X2_frozen.json` is the frozen run set. It is recomputed from the committed evidence, and the test runner refuses to start if anything differs. It also holds the hashes of the analysis code (`src/argus/evaluation/statistics.py`, `tools/analyze_x1x2.py`). The analysis refuses to run if its code differs, if the batch is unfinished, or if the source tree changed. A dry run on calibration data is in `docs/results/ANALYSIS_DRY_RUN_calib_v3.md`; it tests the pipeline and is not a result.
 
 ## What exists
 
