@@ -4,7 +4,7 @@
 
 A preregistered simulation study. The code is the study's simulator, estimators, methods and experiment pipeline (internal code name `argus`).
 
-> **Status (2026-11-02).** The preregistration, validation tuning and calibration pilot are complete. The confirmatory test batch on held-out buildings is frozen and audited, but it has **not been run yet**. This repository contains **no test results** and makes no claim about the hypotheses.
+> **Status (2026-11-02).** The preregistration, validation tuning and calibration pilot are complete. The confirmatory test batch on held-out buildings is frozen and audited, and so is the analysis code that will evaluate it. The batch has **not been run yet**. This repository contains **no test results** and makes no claim about the hypotheses.
 
 ## Problem
 
@@ -42,7 +42,9 @@ The machine-readable preregistration and its amendments are in [`configs/experim
 - amendment 01: channel fairness, coverage definition, infrastructure failures, sensitivity analyses;
 - amendment 02: a documented deviation in validation tuning and a precise repair-lag definition.
 
-Both amendments were written before any test episode. `X1_X2_frozen.json` is the frozen run set. It is recomputed from the committed evidence, and the test runner refuses to start if anything differs.
+- amendment 03: rules the analysis needs that the preregistration left open (replacements, failed episodes, the Holm family, zero-loss controls).
+
+All amendments were written before any test episode. `X1_X2_frozen.json` is the frozen run set, and it includes the hashes of the analysis code (`src/argus/evaluation/statistics.py`, `tools/analyze_x1x2.py`). The analysis refuses to run if its code differs, if the batch is unfinished, or if the source tree changed. A dry run on calibration data is in `docs/results/ANALYSIS_DRY_RUN_calib_v3.md`; it tests the pipeline and is not a result. It is recomputed from the committed evidence, and the test runner refuses to start if anything differs.
 
 ## What exists
 

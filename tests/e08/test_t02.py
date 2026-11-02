@@ -16,7 +16,9 @@ from argus.experiments.protocol import episode_config, episode_seeds, manifest_p
 from argus.experiments.runner import ExperimentRunner, generate_requests
 from argus.experiments.runset import (
     AMENDMENT_02_PATH,
+    AMENDMENT_03_PATH,
     AMENDMENT_PATH,
+    ANALYSIS_CODE,
     APPROVAL_PATH,
     FROZEN_PATH,
     PILOT_DIR,
@@ -74,7 +76,20 @@ def test_frozen_run_set_is_derived_from_committed_evidence(runset: ImmutableRunS
         "O8_budget",
         "D1_tuning_v2_resume",
         "D2_repair_lag",
+        "A1_replacement_slot",
+        "A2_failed_episode_coverage",
+        "A3_terminal_batch",
+        "A4_holm_family",
+        "A5_zero_control",
+        "A6_lags_scope",
+        "A7_pairs_without_failure",
+        "A8_calibration",
+        "A9_ood",
+        "A10_js",
+        "A11_even_b",
+        "A12_resource_limits",
     }
+    assert frozen["sources"]["amendment_03"]["path"] == AMENDMENT_03_PATH
     assert frozen["analysis"]["decisions"]["O6_definitions"]["repair_lag"] == "see D2_repair_lag"
     assert frozen["sources"]["amendment_02"]["path"] == AMENDMENT_02_PATH
     assert frozen["test"]["lists"] == ["id_test", "ood_test"]
@@ -87,11 +102,13 @@ def test_a_changed_frozen_file_is_refused(tmp_path: Path) -> None:
         "configs/splits/splits_v1.json",
         AMENDMENT_PATH,
         AMENDMENT_02_PATH,
+        AMENDMENT_03_PATH,
         VAL_RESULTS,
         f"{PILOT_DIR}/results.jsonl",
         f"{PILOT_DIR}/usage.json",
         f"{PROBE_DIR}/results.jsonl",
         f"{PROBE_DIR}/usage.json",
+        *ANALYSIS_CODE,
         FROZEN_PATH,
     ):
         (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)

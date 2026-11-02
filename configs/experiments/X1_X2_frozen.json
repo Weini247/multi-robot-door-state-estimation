@@ -1,6 +1,22 @@
 {
   "analysis": {
+    "code": {
+      "src/argus/evaluation/statistics.py": "c8259d08eb39aced87476018592ea23698a3dff7713417e5add7448f1fd0de05",
+      "tools/analyze_x1x2.py": "e22a761ac66741a13b417bbe6a0b62af9a807d73ea3c39d760029681b79eb285"
+    },
     "decisions": {
+      "A10_js": "JS between candidate and H2 control on identical answered probes: mean per pair (building, cell, replicate), then over replicates and cells (equal weights) per building; buildings without common probes are excluded and counted",
+      "A11_even_b": "the planned B rounds the preregistered formula up to an even number (78.15 -> 79 -> 80) so that every prefix is family-balanced; this is a conservative deviation from the formula text",
+      "A12_resource_limits": "'under equal resource limits' is satisfied by design (same byte budget, horizon and robots for every method); sent bytes per method are reported, not tested",
+      "A1_replacement_slot": "a replacement building takes the slot (list position) of the building it replaced, as logged in run_plan.json; prefix and truncation rules count slots, not manifest positions",
+      "A2_failed_episode_coverage": "an episode that failed keeps the coverage reached before its failure tick (traced), held to the horizon; an episode killed by the hard timeout has no trace and gets coverage 0 for every target set; it contributes no repair-lag events and no runtime sample (counted separately)",
+      "A3_terminal_batch": "the analysis runs only on a finished batch: complete to the planned B, or stopped by its budget (sessions.jsonl); paused, breaker- or infrastructure-stopped batches are resumed first; no LOCK or PAUSE; the source tree must equal the one in run_plan.json; every analysis run is logged in analysis_log.jsonl",
+      "A4_holm_family": "the secondary inferential family is the 8 per-cell gains of the candidate against the H2 control plus the 3 H1 interaction contrasts of the candidate on id_test (11 tests, two-sided bootstrap p with +1 correction, Holm); if a per-cell gain is undefined (A5), that member is the p of the absolute difference in that cell; all other secondary quantities and all OOD results are estimates with percentile intervals and no p-value",
+      "A5_zero_control": "the absolute difference M(candidate) - M(control) is always reported with its interval; if the control mean is zero in the data or in any bootstrap draw, the ratio gain is undefined and only the difference is reported; an undefined primary gain or coverage loss means H2 is not supported",
+      "A6_lags_scope": "repair lags are computed per list (id_test primary, ood_test per family), reported as Kaplan-Meier curve up to tau, restricted mean, censoring rate and the number at risk at tau",
+      "A7_pairs_without_failure": "pairs (building, cell, replicate) with a failure of either method are left out, cells average their remaining pairs, buildings without any pair drop out of this sensitivity bootstrap; n per family is reported, and a result left with a single family or no building is flagged, not family-weighted",
+      "A8_calibration": "Brier and NLL per building pooled over all answered probes of the method in that building (equal weight per probe), then the family-weighted mean over buildings; episodes without answered probes are counted; the NLL clipping rate is reported",
+      "A9_ood": "ood_test is analysed per family with the same estimand set as id_test, descriptively, without p-values and without a claim",
       "D1_tuning_v2_resume": {
         "cause": "concurrent CPU load from another session on the same host (wall per building 735-2101 s in the first session; the projection from those buildings exceeded the cap); CPU stayed within its cap (7.11 h of 8 h), wall totalled 2.63 h of 2 h",
         "decision": "accepted as a deviation of the stop rule, not only of the wall cap; the selection uses the 10 complete buildings",
@@ -59,7 +75,8 @@
     },
     "source": [
       "configs/experiments/preregistration_v1_amendment_01.json",
-      "configs/experiments/preregistration_v1_amendment_02.json"
+      "configs/experiments/preregistration_v1_amendment_02.json",
+      "configs/experiments/preregistration_v1_amendment_03.json"
     ]
   },
   "cells": [
@@ -157,6 +174,10 @@
     "amendment_02": {
       "path": "configs/experiments/preregistration_v1_amendment_02.json",
       "sha256": "23892bf4f7fc6212a2b786fb396823c327aded1f48501027a6201d350ddd377a"
+    },
+    "amendment_03": {
+      "path": "configs/experiments/preregistration_v1_amendment_03.json",
+      "sha256": "70327ccdbf8e34c9d8c1add5e76c2a3ffd7699b49dbe086c325d10ba53df5925"
     },
     "pilot_results": {
       "path": "docs/results/calib_pilot_v2/results.jsonl",

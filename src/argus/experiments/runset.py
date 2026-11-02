@@ -78,6 +78,8 @@ APPROVAL_PATH = "configs/experiments/X1_X2_approval.json"
 TEST_LISTS = ("id_test", "ood_test")
 AMENDMENT_PATH = "configs/experiments/preregistration_v1_amendment_01.json"
 AMENDMENT_02_PATH = "configs/experiments/preregistration_v1_amendment_02.json"
+AMENDMENT_03_PATH = "configs/experiments/preregistration_v1_amendment_03.json"
+ANALYSIS_CODE = ("src/argus/evaluation/statistics.py", "tools/analyze_x1x2.py")
 # v2 evidence after amendment 01 (O1, fair channel); v1 stays committed and superseded
 VAL_RESULTS = "docs/results/val_tuning_v2.jsonl"
 PILOT_DIR = "docs/results/calib_pilot_v2"
@@ -148,6 +150,11 @@ def cpu_seconds(
     return out
 
 
+def text_sha256(path: Path) -> str:
+    """SHA-256 of a text file with line endings normalised to LF."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def source_sha256(root: Path) -> str:
     """Content hash of the package sources the workers import."""
     digest = hashlib.sha256()
@@ -199,12 +206,18 @@ def build_frozen(root: Path) -> dict[str, Any]:
         raise RunSetError("an amendment does not amend this preregistration")
     if second["follows"]["sha256"] != file_sha256(root / AMENDMENT_PATH):
         raise RunSetError("amendment 02 does not follow this amendment 01")
+    third = json.loads((root / AMENDMENT_03_PATH).read_text(encoding="utf-8"))
+    if third["amends"]["sha256"] != prereg_sha or third["follows"]["sha256"] != file_sha256(
+        root / AMENDMENT_02_PATH
+    ):
+        raise RunSetError("amendment 03 does not follow this preregistration and amendment 02")
     decisions = {k: v for k, v in amendment["decisions"].items() if k != "O1_channel_fairness"}
     decisions["O6_definitions"] = {  # amendment 02, D2 replaces the repair-lag definition
         **{k: v for k, v in decisions["O6_definitions"].items() if k != "repair_lag"},
         "repair_lag": "see D2_repair_lag",
     }
     decisions.update(second["decisions"])
+    decisions.update(third["decisions"])
     return {
         "schema": FROZEN_SCHEMA,
         "status": "frozen before any test episode; a run also needs " + APPROVAL_PATH,
@@ -217,6 +230,10 @@ def build_frozen(root: Path) -> dict[str, Any]:
             "amendment_02": {
                 "path": AMENDMENT_02_PATH,
                 "sha256": file_sha256(root / AMENDMENT_02_PATH),
+            },
+            "amendment_03": {
+                "path": AMENDMENT_03_PATH,
+                "sha256": file_sha256(root / AMENDMENT_03_PATH),
             },
             "split_manifest": dict(prereg["split_manifest"]),
             "validation_results": {"path": VAL_RESULTS, "sha256": file_sha256(root / VAL_RESULTS)},
@@ -237,8 +254,10 @@ def build_frozen(root: Path) -> dict[str, Any]:
         },
         "methods": methods,
         "analysis": {
-            "source": [AMENDMENT_PATH, AMENDMENT_02_PATH],
+            "source": [AMENDMENT_PATH, AMENDMENT_02_PATH, AMENDMENT_03_PATH],
             "decisions": decisions,
+            # the analysis code is frozen with the run set, before any test episode
+            "code": {path: text_sha256(root / path) for path in ANALYSIS_CODE},
         },
         "cells": [c.cell_id for c in CELLS],
         "test": {

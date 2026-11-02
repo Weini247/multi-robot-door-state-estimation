@@ -1,0 +1,928 @@
+{
+  "analysis_code": {
+    "src/argus/evaluation/statistics.py": "c8259d08eb39aced87476018592ea23698a3dff7713417e5add7448f1fd0de05",
+    "tools/analyze_x1x2.py": "e22a761ac66741a13b417bbe6a0b62af9a807d73ea3c39d760029681b79eb285"
+  },
+  "candidate": "repair",
+  "draws": 10000,
+  "dry_run": true,
+  "frozen_sha256": "b16b05936bedde387e3b8637be8b72b7d818e8f5a93c48be096584d7f58a359c",
+  "h2_control": "cross_rank",
+  "lists": [
+    "calib"
+  ],
+  "planned_b": null,
+  "prefix_b": 2,
+  "primary": {
+    "buildings": 2,
+    "calibration_answered": {
+      "age_revisit": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.21695900510601387,
+            "high": 0.21695900510601387,
+            "low": 0.21695900510601387
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 0.6032535740177875,
+            "high": 0.6032535740177875,
+            "low": 0.6032535740177875
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.026041666666666668
+      },
+      "cross_rank": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.21581466337955707,
+            "high": 0.21581466337955707,
+            "low": 0.21581466337955707
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 0.5976331318677515,
+            "high": 0.5976331318677515,
+            "low": 0.5976331318677515
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.0375
+      },
+      "dynamics_ids": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.19826130615495874,
+            "high": 0.19826130615495874,
+            "low": 0.19826130615495874
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 0.5494680496338615,
+            "high": 0.5494680496338615,
+            "low": 0.5494680496338615
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.04375
+      },
+      "naive_gossip": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.21380540973492201,
+            "high": 0.21380540973492201,
+            "low": 0.21380540973492201
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 1.2171960920634062,
+            "high": 1.2171960920634062,
+            "low": 1.2171960920634062
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.15703125
+      },
+      "no_comm": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.21657265746495158,
+            "high": 0.21657265746495158,
+            "low": 0.21657265746495158
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 0.6040382834562279,
+            "high": 0.6040382834562279,
+            "low": 0.6040382834562279
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.025520833333333333
+      },
+      "repair": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.20725431586089574,
+            "high": 0.20725431586089574,
+            "low": 0.20725431586089574
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 0.5825462382108599,
+            "high": 0.5825462382108599,
+            "low": 0.5825462382108599
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.03333333333333333
+      },
+      "ttl_ids": {
+        "brier": {
+          "estimate": {
+            "estimate": 0.23409349388352899,
+            "high": 0.23409349388352899,
+            "low": 0.23409349388352899
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "buildings": 2,
+        "episodes_without_answers": 0,
+        "nll": {
+          "estimate": {
+            "estimate": 0.7164148178046721,
+            "high": 0.7164148178046721,
+            "low": 0.7164148178046721
+          },
+          "families": {
+            "loop": 1,
+            "tree": 1
+          }
+        },
+        "nll_clipping_rate": 0.04583333333333333
+      }
+    },
+    "coverage_closed_final": {
+      "age_revisit": {
+        "estimate": 0.25448602236072626,
+        "high": 0.25448602236072626,
+        "low": 0.25448602236072626
+      },
+      "cross_rank": {
+        "estimate": 0.30061767718267673,
+        "high": 0.30061767718267673,
+        "low": 0.30061767718267673
+      },
+      "dynamics_ids": {
+        "estimate": 0.25448602236072626,
+        "high": 0.25448602236072626,
+        "low": 0.25448602236072626
+      },
+      "naive_gossip": {
+        "estimate": 0.25448602236072626,
+        "high": 0.25448602236072626,
+        "low": 0.25448602236072626
+      },
+      "no_comm": {
+        "estimate": 0.25448602236072626,
+        "high": 0.25448602236072626,
+        "low": 0.25448602236072626
+      },
+      "repair": {
+        "estimate": 0.22171718882488178,
+        "high": 0.22171718882488178,
+        "low": 0.22171718882488178
+      },
+      "ttl_ids": {
+        "estimate": 0.2540303722999729,
+        "high": 0.2540303722999729,
+        "low": 0.2540303722999729
+      }
+    },
+    "coverage_secondary": {
+      "coverage_closed_auc": {
+        "difference": {
+          "estimate": -0.05968023287931021,
+          "high": -0.05968023287931021,
+          "low": -0.05968023287931021
+        },
+        "gain": {
+          "estimate": 0.21792635035786223,
+          "high": 0.21792635035786223,
+          "low": 0.21792635035786223
+        }
+      },
+      "coverage_open_auc": {
+        "difference": {
+          "estimate": -0.05956848926495953,
+          "high": -0.05956848926495953,
+          "low": -0.05956848926495953
+        },
+        "gain": {
+          "estimate": 0.2179180029694322,
+          "high": 0.2179180029694322,
+          "low": 0.2179180029694322
+        }
+      },
+      "coverage_open_final": {
+        "difference": {
+          "estimate": -0.07906415903267405,
+          "high": -0.07906415903267405,
+          "low": -0.07906415903267405
+        },
+        "gain": {
+          "estimate": 0.26291322748529655,
+          "high": 0.26291322748529655,
+          "low": 0.26291322748529655
+        }
+      }
+    },
+    "families": {
+      "loop": 1,
+      "tree": 1
+    },
+    "gain_per_cell": {
+      "dyn-cor-direct": {
+        "difference": {
+          "estimate": 0.024999999999999967,
+          "high": 0.024999999999999967,
+          "low": 0.024999999999999967
+        },
+        "gain": {
+          "estimate": -0.08333333333333326,
+          "high": -0.08333333333333326,
+          "low": -0.08333333333333326
+        }
+      },
+      "dyn-cor-relay": {
+        "difference": {
+          "estimate": 0.033333333333333326,
+          "high": 0.033333333333333326,
+          "low": 0.033333333333333326
+        },
+        "gain": {
+          "estimate": -0.11111111111111116,
+          "high": -0.11111111111111116,
+          "low": -0.11111111111111116
+        }
+      },
+      "dyn-ind-direct": {
+        "difference": {
+          "estimate": 0.012500000000000011,
+          "high": 0.012500000000000011,
+          "low": 0.012500000000000011
+        },
+        "gain": {
+          "estimate": -0.042553191489361764,
+          "high": -0.042553191489361764,
+          "low": -0.042553191489361764
+        }
+      },
+      "dyn-ind-relay": {
+        "difference": {
+          "estimate": 0.024999999999999967,
+          "high": 0.024999999999999967,
+          "low": 0.024999999999999967
+        },
+        "gain": {
+          "estimate": -0.0851063829787233,
+          "high": -0.0851063829787233,
+          "low": -0.0851063829787233
+        }
+      },
+      "sta-cor-direct": {
+        "difference": {
+          "estimate": -0.07500000000000001,
+          "high": -0.07500000000000001,
+          "low": -0.07500000000000001
+        },
+        "gain": {
+          "estimate": 0.16589861751152069,
+          "high": 0.16589861751152069,
+          "low": 0.16589861751152069
+        }
+      },
+      "sta-cor-relay": {
+        "difference": {
+          "estimate": -0.07500000000000001,
+          "high": -0.07500000000000001,
+          "low": -0.07500000000000001
+        },
+        "gain": {
+          "estimate": 0.16589861751152069,
+          "high": 0.16589861751152069,
+          "low": 0.16589861751152069
+        }
+      },
+      "sta-ind-direct": {
+        "difference": {
+          "estimate": -0.06875000000000003,
+          "high": -0.06875000000000003,
+          "low": -0.06875000000000003
+        },
+        "gain": {
+          "estimate": 0.15207373271889402,
+          "high": 0.15207373271889402,
+          "low": 0.15207373271889402
+        }
+      },
+      "sta-ind-relay": {
+        "difference": {
+          "estimate": -0.07500000000000001,
+          "high": -0.07500000000000001,
+          "low": -0.07500000000000001
+        },
+        "gain": {
+          "estimate": 0.16589861751152069,
+          "high": 0.16589861751152069,
+          "low": 0.16589861751152069
+        }
+      }
+    },
+    "gain_vs_each_control": {
+      "age_revisit": {
+        "difference": {
+          "estimate": -0.026822916666666696,
+          "high": -0.026822916666666696,
+          "low": -0.026822916666666696
+        },
+        "gain": {
+          "estimate": 0.07123098201936384,
+          "high": 0.07123098201936384,
+          "low": 0.07123098201936384
+        }
+      },
+      "cross_rank": {
+        "difference": {
+          "estimate": -0.024739583333333315,
+          "high": -0.024739583333333315,
+          "low": -0.024739583333333315
+        },
+        "gain": {
+          "estimate": 0.06606397774687056,
+          "high": 0.06606397774687056,
+          "low": 0.06606397774687056
+        }
+      },
+      "dynamics_ids": {
+        "difference": {
+          "estimate": 0.0049479166666666075,
+          "high": 0.0049479166666666075,
+          "low": 0.0049479166666666075
+        },
+        "gain": {
+          "estimate": -0.01435045317220518,
+          "high": -0.01435045317220518,
+          "low": -0.01435045317220518
+        }
+      },
+      "naive_gossip": {
+        "difference": {
+          "estimate": -0.09166666666666667,
+          "high": -0.09166666666666667,
+          "low": -0.09166666666666667
+        },
+        "gain": {
+          "estimate": 0.20766961651917404,
+          "high": 0.20766961651917404,
+          "low": 0.20766961651917404
+        }
+      },
+      "no_comm": {
+        "difference": {
+          "estimate": -0.023177083333333348,
+          "high": -0.023177083333333348,
+          "low": -0.023177083333333348
+        },
+        "gain": {
+          "estimate": 0.06215083798882681,
+          "high": 0.06215083798882681,
+          "low": 0.06215083798882681
+        }
+      },
+      "ttl_ids": {
+        "difference": {
+          "estimate": -0.056510416666666674,
+          "high": -0.056510416666666674,
+          "low": -0.056510416666666674
+        },
+        "gain": {
+          "estimate": 0.13910256410256416,
+          "high": 0.13910256410256416,
+          "low": 0.13910256410256416
+        }
+      }
+    },
+    "h1_interaction_contrasts": {
+      "cross_rank": {
+        "dynamics x circulation": {
+          "estimate": 0.0,
+          "high": 0.0,
+          "low": 0.0
+        },
+        "dynamics x sensor": {
+          "estimate": 0.006249999999999978,
+          "high": 0.006249999999999978,
+          "low": 0.006249999999999978
+        },
+        "sensor x circulation": {
+          "estimate": 0.0,
+          "high": 0.0,
+          "low": 0.0
+        }
+      },
+      "repair": {
+        "dynamics x circulation": {
+          "estimate": 0.013541666666666664,
+          "high": 0.013541666666666664,
+          "low": 0.013541666666666664
+        },
+        "dynamics x sensor": {
+          "estimate": 0.019791666666666655,
+          "high": 0.019791666666666655,
+          "low": 0.019791666666666655
+        },
+        "sensor x circulation": {
+          "estimate": 0.0010416666666666664,
+          "high": 0.0010416666666666664,
+          "low": 0.0010416666666666664
+        }
+      }
+    },
+    "h2_coverage": {
+      "difference": {
+        "estimate": -0.07890048835779495,
+        "high": -0.07890048835779495,
+        "low": -0.07890048835779495
+      },
+      "gain": {
+        "estimate": 0.26246124012810257,
+        "high": 0.26246124012810257,
+        "low": 0.26246124012810257
+      }
+    },
+    "h2_loss": {
+      "difference": {
+        "estimate": -0.024739583333333315,
+        "high": -0.024739583333333315,
+        "low": -0.024739583333333315
+      },
+      "gain": {
+        "estimate": 0.06606397774687056,
+        "high": 0.06606397774687056,
+        "low": 0.06606397774687056
+      }
+    },
+    "holm_family": {
+      "members": "8 per-cell gains and 3 candidate H1 contrasts (amendment 03, A4)",
+      "p_holm": {
+        "cell dyn-cor-direct": 0.0021997800219978004,
+        "cell dyn-cor-relay": 0.0021997800219978004,
+        "cell dyn-ind-direct": 0.0021997800219978004,
+        "cell dyn-ind-relay": 0.0021997800219978004,
+        "cell sta-cor-direct": 0.0021997800219978004,
+        "cell sta-cor-relay": 0.0021997800219978004,
+        "cell sta-ind-direct": 0.0021997800219978004,
+        "cell sta-ind-relay": 0.0021997800219978004,
+        "h1 dynamics x circulation": 0.0021997800219978004,
+        "h1 dynamics x sensor": 0.0021997800219978004,
+        "h1 sensor x circulation": 0.0021997800219978004
+      },
+      "p_raw": {
+        "cell dyn-cor-direct": 0.00019998000199980003,
+        "cell dyn-cor-relay": 0.00019998000199980003,
+        "cell dyn-ind-direct": 0.00019998000199980003,
+        "cell dyn-ind-relay": 0.00019998000199980003,
+        "cell sta-cor-direct": 0.00019998000199980003,
+        "cell sta-cor-relay": 0.00019998000199980003,
+        "cell sta-ind-direct": 0.00019998000199980003,
+        "cell sta-ind-relay": 0.00019998000199980003,
+        "h1 dynamics x circulation": 0.00019998000199980003,
+        "h1 dynamics x sensor": 0.00019998000199980003,
+        "h1 sensor x circulation": 0.00019998000199980003
+      }
+    },
+    "js_candidate_vs_control": {
+      "buildings": 2,
+      "excluded_buildings": 0,
+      "families": {
+        "loop": 1,
+        "tree": 1
+      },
+      "js": {
+        "estimate": 0.0271211557318458,
+        "high": 0.0271211557318458,
+        "low": 0.0271211557318458
+      }
+    },
+    "killed": {
+      "age_revisit": 0,
+      "cross_rank": 0,
+      "dynamics_ids": 0,
+      "naive_gossip": 0,
+      "no_comm": 0,
+      "repair": 0,
+      "ttl_ids": 0
+    },
+    "list": "calib",
+    "mean_loss": {
+      "age_revisit": {
+        "estimate": 0.3765625,
+        "high": 0.3765625,
+        "low": 0.3765625
+      },
+      "cross_rank": {
+        "estimate": 0.37447916666666664,
+        "high": 0.37447916666666664,
+        "low": 0.37447916666666664
+      },
+      "dynamics_ids": {
+        "estimate": 0.3447916666666667,
+        "high": 0.3447916666666667,
+        "low": 0.3447916666666667
+      },
+      "naive_gossip": {
+        "estimate": 0.44140625,
+        "high": 0.44140625,
+        "low": 0.44140625
+      },
+      "no_comm": {
+        "estimate": 0.3729166666666667,
+        "high": 0.3729166666666667,
+        "low": 0.3729166666666667
+      },
+      "repair": {
+        "estimate": 0.3497395833333333,
+        "high": 0.3497395833333333,
+        "low": 0.3497395833333333
+      },
+      "ttl_ids": {
+        "estimate": 0.40625,
+        "high": 0.40625,
+        "low": 0.40625
+      }
+    },
+    "repair_lag": {
+      "per_robot": {
+        "cross_rank": {
+          "at_risk_at_tau": 710,
+          "censoring_rate": 0.9889240506329114,
+          "events": 1264,
+          "kaplan_meier_to_tau": [
+            [
+              16,
+              0.9967532467532467
+            ],
+            [
+              120,
+              0.9930200885257064
+            ],
+            [
+              167,
+              0.990968394127926
+            ]
+          ],
+          "restricted_mean_ticks": 298.13307824206004
+        },
+        "repair": {
+          "at_risk_at_tau": 716,
+          "censoring_rate": 0.9968354430379747,
+          "events": 1264,
+          "kaplan_meier_to_tau": [
+            [
+              124,
+              0.9981060606060606
+            ],
+            [
+              147,
+              0.9961217543225495
+            ]
+          ],
+          "restricted_mean_ticks": 299.36306780528946
+        }
+      },
+      "pooled": {
+        "cross_rank": {
+          "at_risk_at_tau": 168,
+          "censoring_rate": 0.9493670886075949,
+          "events": 316,
+          "kaplan_meier_to_tau": [
+            [
+              66,
+              0.9861111111111112
+            ],
+            [
+              70,
+              0.9722222222222223
+            ],
+            [
+              126,
+              0.9570312500000001
+            ]
+          ],
+          "restricted_mean_ticks": 290.9123263888889
+        },
+        "repair": {
+          "at_risk_at_tau": 173,
+          "censoring_rate": 0.9525316455696202,
+          "events": 316,
+          "kaplan_meier_to_tau": [
+            [
+              15,
+              0.9967532467532467
+            ],
+            [
+              66,
+              0.9932802389248382
+            ],
+            [
+              74,
+              0.9898072310964297
+            ],
+            [
+              108,
+              0.9825558960700822
+            ],
+            [
+              126,
+              0.9711749397449462
+            ],
+            [
+              147,
+              0.9632144894191679
+            ]
+          ],
+          "restricted_mean_ticks": 292.8866000981309
+        }
+      },
+      "status": "secondary, descriptive (D2)",
+      "tau_ticks": 300
+    },
+    "rule": "gain low >= 0.10 and coverage-loss high <= 0.05; p-values not used",
+    "runtime": {
+      "age_revisit": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 9.266,
+          "p95": 15.0,
+          "p99": 15.0
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 15.402,
+          "p95": 30.106,
+          "p99": 30.106
+        }
+      },
+      "cross_rank": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 11.812,
+          "p95": 16.109,
+          "p99": 16.109
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 19.124,
+          "p95": 41.625,
+          "p99": 41.625
+        }
+      },
+      "dynamics_ids": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 10.734,
+          "p95": 23.359,
+          "p99": 23.359
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 16.016,
+          "p95": 38.239,
+          "p99": 38.239
+        }
+      },
+      "naive_gossip": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 10.453,
+          "p95": 12.922,
+          "p99": 12.922
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 16.033,
+          "p95": 22.792,
+          "p99": 22.792
+        }
+      },
+      "no_comm": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 10.938,
+          "p95": 15.312,
+          "p99": 15.312
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 16.738,
+          "p95": 24.951,
+          "p99": 24.951
+        }
+      },
+      "repair": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 11.156,
+          "p95": 22.828,
+          "p99": 22.828
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 17.394,
+          "p95": 36.783,
+          "p99": 36.783
+        }
+      },
+      "ttl_ids": {
+        "cpu_s": {
+          "n": 16.0,
+          "p50": 10.438,
+          "p95": 14.406,
+          "p99": 14.406
+        },
+        "wall_s": {
+          "n": 16.0,
+          "p50": 15.546,
+          "p95": 27.567,
+          "p99": 27.567
+        }
+      }
+    },
+    "sensitivity": {
+      "loss_2:1": {
+        "difference": {
+          "estimate": -0.026822916666666585,
+          "high": -0.026822916666666585,
+          "low": -0.026822916666666585
+        },
+        "gain": {
+          "estimate": 0.07212885154061599,
+          "high": 0.07212885154061599,
+          "low": 0.07212885154061599
+        }
+      },
+      "loss_3:1": {
+        "difference": {
+          "estimate": -0.027864583333333304,
+          "high": -0.027864583333333304,
+          "low": -0.027864583333333304
+        },
+        "gain": {
+          "estimate": 0.07472067039106134,
+          "high": 0.07472067039106134,
+          "low": 0.07472067039106134
+        }
+      },
+      "loss_m6": {
+        "difference": {
+          "estimate": -0.024739583333333315,
+          "high": -0.024739583333333315,
+          "low": -0.024739583333333315
+        },
+        "gain": {
+          "estimate": 0.06606397774687056,
+          "high": 0.06606397774687056,
+          "low": 0.06606397774687056
+        }
+      },
+      "note": "loss ratios re-scored at decision level from recorded probabilities; policies kept 4:1 (amendment 01, O5)",
+      "pairs_without_failure": {
+        "buildings": 2,
+        "difference": {
+          "estimate": -0.024739583333333315,
+          "high": -0.024739583333333315,
+          "low": -0.024739583333333315
+        },
+        "excluded_pairs": 0,
+        "families": {
+          "loop": 1,
+          "tree": 1
+        },
+        "gain": {
+          "estimate": 0.06606397774687056,
+          "high": 0.06606397774687056,
+          "low": 0.06606397774687056
+        }
+      }
+    },
+    "sent_bytes_total": {
+      "age_revisit": {
+        "estimate": 35552.25,
+        "high": 35552.25,
+        "low": 35552.25
+      },
+      "cross_rank": {
+        "estimate": 9527.25,
+        "high": 9527.25,
+        "low": 9527.25
+      },
+      "dynamics_ids": {
+        "estimate": 537622.5,
+        "high": 537622.5,
+        "low": 537622.5
+      },
+      "naive_gossip": {
+        "estimate": 222775.75,
+        "high": 222775.75,
+        "low": 222775.75
+      },
+      "no_comm": {
+        "estimate": 46965.0,
+        "high": 46965.0,
+        "low": 46965.0
+      },
+      "repair": {
+        "estimate": 216620.5,
+        "high": 216620.5,
+        "low": 216620.5
+      },
+      "ttl_ids": {
+        "estimate": 399749.25,
+        "high": 399749.25,
+        "low": 399749.25
+      }
+    },
+    "status": {
+      "age_revisit": {
+        "ok": 16
+      },
+      "cross_rank": {
+        "ok": 16
+      },
+      "dynamics_ids": {
+        "ok": 16
+      },
+      "naive_gossip": {
+        "ok": 16
+      },
+      "no_comm": {
+        "ok": 16
+      },
+      "repair": {
+        "ok": 16
+      },
+      "ttl_ids": {
+        "ok": 16
+      }
+    },
+    "stress_cell": "dyn-cor-relay",
+    "verdict": "not supported"
+  },
+  "seed": 20261103,
+  "terminal": null
+}

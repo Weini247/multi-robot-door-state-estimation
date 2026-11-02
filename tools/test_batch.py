@@ -20,6 +20,7 @@ import hashlib
 import json
 import math
 import subprocess
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -123,7 +124,24 @@ def run(out: Path) -> None:
         approval_sha,
     )
     summary = BatchRunner(out, caps, test_episode, killed_episode, strict=True).run(jobs)
+    log_session(out, summary, commit)
     print(_summary_line(summary))
+
+
+def log_session(out: Path, summary: Any, commit: str) -> None:
+    """One line per session; the analysis accepts only a complete or budget-stopped batch."""
+    entry = {
+        "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "commit": commit,
+        "stop_reason": summary.stop_reason,
+        "stopped_before": summary.stopped_before,
+        "completed_groups": len(summary.completed_groups),
+        "ran": summary.ran,
+        "cpu_h": summary.usage.cpu_s / 3600,
+        "wall_h": summary.usage.wall_s / 3600,
+    }
+    with (out / "sessions.jsonl").open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(entry, sort_keys=True) + "\n")
 
 
 def tool_sha256() -> str:
