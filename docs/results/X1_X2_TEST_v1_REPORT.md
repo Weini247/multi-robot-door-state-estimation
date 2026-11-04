@@ -121,6 +121,7 @@ On building families never used during development the picture is the same: the 
    - The gain against dynamics_ids is +0.001 [−0.014, +0.015], so no difference is detectable.
    - repair sends 268 kB, dynamics_ids 777 kB.
    - The same holds out of distribution: +0.008 (dogleg) and +0.004 (double_loop), both intervals including 0.
+   - This compares the configurations selected for lowest loss. `dynamics_ids` was not tuned for bytes: on validation its 20 s send period nearly matched its loss (0.2800 vs 0.2761) with about half the bytes of the busiest robot, so the ratio does not measure efficiency.
 
    This suggests that targeted re-observation can substitute for communication without losing decision quality. An efficiency claim would need its own study with a predefined efficiency metric and an equivalence margin.
 2. **The control selected as strongest on validation is not the strongest on test.**

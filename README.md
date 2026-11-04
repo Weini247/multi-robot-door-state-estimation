@@ -15,7 +15,7 @@ A preregistered simulation study. The code is the study's simulator, estimators,
   - The result is unchanged at cost ratios 3:1 and 2:1.
   - Out-of-distribution families show the same pattern: a smaller gain and a larger coverage cost.
 - **Exploratory, not preregistered:**
-  - `repair` matches the communication-heavy `dynamics_ids` (difference +0.001 [−0.014, +0.015]) while sending about a third of the bytes.
+  - `repair` matches the communication-heavy `dynamics_ids` (difference +0.001 [−0.014, +0.015]) while sending about a third of the bytes. This compares the configurations selected for lowest loss. `dynamics_ids` was not tuned for bytes: on validation its 20 s send period nearly matched its loss (0.2800 vs 0.2761) with about half the bytes of the busiest robot, so the ratio does not measure efficiency.
   - The control chosen on validation was not the strongest on test, a winner's-curse effect from selecting on 10 buildings.
 
 ![H2: both preregistered conditions are missed](docs/figures/h2_decision.svg)
