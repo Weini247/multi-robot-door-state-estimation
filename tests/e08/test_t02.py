@@ -125,10 +125,10 @@ def test_a_changed_frozen_file_is_refused(tmp_path: Path) -> None:
 def test_the_test_batch_is_refused_without_a_matching_approval(
     runset: ImmutableRunSet, tmp_path: Path
 ) -> None:
-    assert not (ROOT / APPROVAL_PATH).exists()
-    with pytest.raises(RunSetError, match="no approval"):
-        runset.approval()
+    runset.approval()  # the committed owner approval matches the frozen run set
     other = dataclasses.replace(runset, root=tmp_path)
+    with pytest.raises(RunSetError, match="no approval"):
+        other.approval()
     (tmp_path / APPROVAL_PATH).parent.mkdir(parents=True)
     (tmp_path / APPROVAL_PATH).write_text(json.dumps({"frozen_sha256": "0" * 64}), "utf-8")
     with pytest.raises(RunSetError, match="another frozen run set"):

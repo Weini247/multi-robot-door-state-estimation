@@ -1,0 +1,2 @@
+{"commit": "966d2dc2fbd72b875001ee7d5b8a9f299f727bd6", "completed_groups": 37, "cpu_h": 12.958175555555584, "ran": 4188, "stop_reason": "paused", "stopped_before": "ood_test/double_loop-30000116", "utc": "2026-11-03T12:45:23Z", "wall_h": 2.962244680457645}
+{"commit": "966d2dc2fbd72b875001ee7d5b8a9f299f727bd6", "completed_groups": 160, "cpu_h": 60.04772500000003, "ran": 13732, "stop_reason": null, "stopped_before": null, "utc": "2026-11-04T05:39:06Z", "wall_h": 14.94475721736749}

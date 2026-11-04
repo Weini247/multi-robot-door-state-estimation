@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="238" viewBox="0 0 760 238" role="img" aria-label="H2: the two preregistered conditions">
+<title>H2: the two preregistered conditions</title>
+<style>
+svg { --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #8a8984;
+  --grid: #e4e3df; --accent: #2a78d6; --zone: #2a78d6; --other: #6f6e69; }
+@media (prefers-color-scheme: dark) {
+  svg { --surface: #1a1a19; --ink: #f0efec; --ink2: #c3c2b7; --muted: #8f8e86;
+    --grid: #33332f; --accent: #3987e5; --zone: #3987e5; --other: #a3a299; }
+}
+.bg { fill: var(--surface); }
+text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: var(--ink); }
+.t { font-size: 15px; font-weight: 600; }
+.s { font-size: 12px; fill: var(--ink2); }
+.l { font-size: 12.5px; }
+.v { font-size: 11.5px; fill: var(--ink2); font-variant-numeric: tabular-nums; }
+.ax { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.grid { stroke: var(--grid); stroke-width: 1; }
+.zero { stroke: var(--muted); stroke-width: 1; }
+.thr { stroke: var(--ink2); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.zone { fill: var(--zone); opacity: 0.10; }
+.ci { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; }
+.pt { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.ci2 { stroke: var(--other); stroke-width: 2; stroke-linecap: round; }
+.pt2 { fill: var(--other); stroke: var(--surface); stroke-width: 2; }
+</style>
+<rect class="bg" width="760" height="238" rx="8"/>
+<text class="t" x="20" y="28">H2: the two preregistered conditions</text>
+<text class="s" x="20" y="48">Point estimate and 95 % CI (paired cluster bootstrap, 80 buildings). Shaded: where the interval had to lie.</text>
+<line class="grid" x1="302.0" y1="60" x2="302.0" y2="180"/>
+<text class="ax" x="302.0" y="198" text-anchor="middle">0 %</text>
+<line class="grid" x1="374.0" y1="60" x2="374.0" y2="180"/>
+<text class="ax" x="374.0" y="198" text-anchor="middle">5 %</text>
+<line class="grid" x1="446.0" y1="60" x2="446.0" y2="180"/>
+<text class="ax" x="446.0" y="198" text-anchor="middle">10 %</text>
+<line class="grid" x1="518.0" y1="60" x2="518.0" y2="180"/>
+<text class="ax" x="518.0" y="198" text-anchor="middle">15 %</text>
+<line class="grid" x1="590.0" y1="60" x2="590.0" y2="180"/>
+<text class="ax" x="590.0" y="198" text-anchor="middle">20 %</text>
+<rect class="zone" x="446.0" y="64" width="144.0" height="40"/>
+<line class="thr" x1="446.0" y1="64" x2="446.0" y2="104"/>
+<text class="l" x="216" y="84" text-anchor="end">Loss gain vs. cross_rank</text>
+<text class="v" x="216" y="100" text-anchor="end">needs lower bound ≥ 10 %</text>
+<line class="ci" x1="350.5" y1="84" x2="415.5" y2="84"/>
+<circle class="pt" cx="382.8" cy="84" r="6"/>
+<text class="v" x="604" y="88">+5.6 %  [+3.4 %, +7.9 %]</text>
+<text class="l" x="604" y="106">✗ not met</text>
+<rect class="zone" x="230.0" y="128" width="144.0" height="40"/>
+<line class="thr" x1="374.0" y1="128" x2="374.0" y2="168"/>
+<text class="l" x="216" y="148" text-anchor="end">Relative coverage loss</text>
+<text class="v" x="216" y="164" text-anchor="end">needs upper bound ≤ 5 %</text>
+<line class="ci" x1="356.2" y1="148" x2="496.1" y2="148"/>
+<circle class="pt" cx="430.0" cy="148" r="6"/>
+<text class="v" x="604" y="152">+8.9 %  [+3.8 %, +13.5 %]</text>
+<text class="l" x="604" y="170">✗ not met</text>
+</svg>

@@ -1,0 +1,22 @@
+{
+  "approval": {
+    "acknowledged": "deviation D1 (tuning v2 resumed after a host-load stop, amendment 02)",
+    "approved_by": "owner (GitHub Weini247), explicit approval in chat ('Ja, freigeben', 2026-11-02; 'starten', 2026-11-03)",
+    "basis": "docs/audits/E08-T02_PRERUN_REAUDIT.md (GO, addendum: analysis frozen); measured cost 62.9 CPU-h / 22.8 h wall for B = 80, +15 % CPU, wall raised to 30 h (F3)",
+    "cpu_hours": 73,
+    "date": "2026-11-03",
+    "frozen_sha256": "b16b05936bedde387e3b8637be8b72b7d818e8f5a93c48be096584d7f58a359c",
+    "src_sha256": "4f60a0a24ad5d1437c62ebe4f73af667e37fdd7073da66819cfdc1de7e297111",
+    "wall_hours": 30
+  },
+  "approval_sha256": "6aab12d0ef26fa38d3f441d3331d6589f77cd33b2ae1a7e9ab40968ea9619ca6",
+  "b": 80,
+  "first_commit": "966d2dc2fbd72b875001ee7d5b8a9f299f727bd6",
+  "frozen_sha256": "b16b05936bedde387e3b8637be8b72b7d818e8f5a93c48be096584d7f58a359c",
+  "replacements": {
+    "id_test": [],
+    "ood_test": []
+  },
+  "src_sha256": "4f60a0a24ad5d1437c62ebe4f73af667e37fdd7073da66819cfdc1de7e297111",
+  "tool_sha256": "68be91b78850c742419e8ccfbe6aed5979b1fa7ce75eacf8c2426fafcf190931"
+}

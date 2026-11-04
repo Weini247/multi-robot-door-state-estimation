@@ -4,7 +4,27 @@
 
 A preregistered simulation study. The code is the study's simulator, estimators, methods and experiment pipeline (internal code name `argus`).
 
-> **Status (2026-11-02).** The preregistration, validation tuning and calibration pilot are complete. The confirmatory test batch on held-out buildings is frozen and audited, and so is the analysis code that will evaluate it. The batch has **not been run yet**. This repository contains **no test results** and makes no claim about the hypotheses.
+> **Status (2026-11-04).** The confirmatory test batch has been run: 17 920 episodes on 160 held-out buildings, all valid. The frozen analysis was then run exactly once. **H2 is not supported**: `repair` lowers the decision loss against the preregistered control by 5.6 % [3.4, 7.9], below the 10 % threshold, and loses 8.9 % coverage, above the 5 % limit. Full report: [`docs/results/X1_X2_TEST_v1_REPORT.md`](docs/results/X1_X2_TEST_v1_REPORT.md).
+
+## Results at a glance
+
+- **H2 (primary): not supported.** The gain against `cross_rank` is +0.056 [+0.034, +0.079] (required: lower bound ≥ 0.10). The relative coverage loss is +0.089 [+0.038, +0.135] (allowed: upper bound ≤ 0.05).
+- **Where repair helps:** about 11 % gain with static doors and independent sensor errors. The gain falls to about 0 with switching doors, correlated errors and relay.
+- **H1:** all three interaction contrasts are about 0. The factors act additively.
+- **Robustness:**
+  - The result is unchanged at cost ratios 3:1 and 2:1.
+  - Out-of-distribution families show the same pattern: a smaller gain and a larger coverage cost.
+- **Exploratory, not preregistered:**
+  - `repair` matches the communication-heavy `dynamics_ids` (difference +0.001 [−0.014, +0.015]) while sending about a third of the bytes.
+  - The control chosen on validation was not the strongest on test, a winner's-curse effect from selecting on 10 buildings.
+
+![H2: both preregistered conditions are missed](docs/figures/h2_decision.svg)
+
+![Loss gain of repair per factorial condition](docs/figures/gain_per_cell.svg)
+
+![Decision loss against bytes sent, per method](docs/figures/loss_vs_bytes.svg)
+
+The figures are generated from `docs/results/X1_X2_TEST_v1.json` by `tools/make_figures.py`, which uses the standard library only.
 
 ## Problem
 
@@ -55,7 +75,9 @@ All amendments were written before any test episode. `X1_X2_frozen.json` is the 
 | `argus.policies` | candidate, controls and diagnostics behind one interface; information boundary enforced (agents cannot import ground truth) | AST import check, hidden-world canary |
 | `argus.experiments` | episode runner, preregistered tuning, calibration pilot, frozen run set, batch runner with hard timeouts, pause/resume, crash isolation and budget caps across sessions | about 500 tests |
 
-Only calibration and validation data are included: `docs/results/val_tuning_v2.jsonl`, `calib_pilot_v2/` and the calibration probe `test_probe_calib_v3/` with full per-episode raw records. They were used for configuration selection and sample-size planning, **not as evidence**.
+Calibration and validation data are included with full per-episode raw records: `docs/results/val_tuning_v2.jsonl`, `calib_pilot_v2/` and the calibration probe `test_probe_calib_v3/`. They were used for configuration selection and sample-size planning, **not as evidence**.
+
+The test results are included as aggregated estimates (`docs/results/X1_X2_TEST_v1.*`). The per-episode raw test data (131 MB) are hash-bound in the private research repository and available on request.
 
 ## Reproduce
 
