@@ -135,4 +135,9 @@ Some tests check internal audit reports that live only in the private research r
 
 Developed as an independent research project. The process follows staged gates: a preregistration before any test data, independent pre-run audits with GO/NO-GO decisions, redacted evidence logs for every task, and amendments instead of silent changes. The full audit trail is kept in a private research repository and is available on request.
 
-No license has been chosen yet. Until then all rights are reserved; please ask before reuse.
+## License
+
+- **Code** (`src/`, `tools/`, `tests/`): [MIT](LICENSE).
+- **Documentation, figures and result data** (`docs/`, `configs/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). You may reuse them with attribution.
+
+Copyright (c) 2026 Jonas Weingart. If you use this work, please cite the repository.
