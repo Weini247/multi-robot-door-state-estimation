@@ -18,6 +18,8 @@ Controls (no method sees other agents' beliefs or any ground truth):
 * cross_rank    published low-bandwidth baseline (ARGUS adaptation of Cross-rank CR-ESR_p,
                 E07-T05): shares positions only
 * repair        the VOI repair policy (E06-T02), dynamic belief with IDs
+* repair_observe / repair_send  E09 arms: repair with sending or re-observing switched
+                off (diagnostic, never an H2 control)
 """
 
 from __future__ import annotations
@@ -164,7 +166,7 @@ def _period(ctx: MethodContext) -> int:
     return int(ctx.param("send_period_ticks", 50))
 
 
-def _repair(ctx: MethodContext) -> RepairPolicy:
+def _repair(ctx: MethodContext, observe: bool = True, send: bool = True) -> RepairPolicy:
     return RepairPolicy(
         team=ctx.team,
         nominal=ctx.nominal,
@@ -173,6 +175,8 @@ def _repair(ctx: MethodContext) -> RepairPolicy:
         window_ticks=ctx.window_ticks,
         delivery_probability=ctx.delivery_probability,
         horizon_s=ctx.param("horizon_s", 5.0),
+        observe=observe,
+        send=send,
     )
 
 
@@ -244,6 +248,22 @@ METHOD_SPECS: dict[str, MethodSpec] = {
             _repair,
             ("horizon_s",),
             "candidate",
+        ),
+        MethodSpec(
+            "repair_observe",
+            ("voi-repair-movement", "fixed-lag-joint-belief", "no-communication"),
+            _dynamic,
+            lambda ctx: _repair(ctx, send=False),
+            ("horizon_s",),
+            "diagnostic",
+        ),
+        MethodSpec(
+            "repair_send",
+            ("frontier-movement", "fixed-lag-joint-belief", "voi-sends"),
+            _dynamic,
+            lambda ctx: _repair(ctx, observe=False),
+            ("horizon_s",),
+            "diagnostic",
         ),
         MethodSpec(
             "frontier",

@@ -1,0 +1,61 @@
+{
+  "amendment_sha256": "2816f18f021a2182729d8fc0715dc3e676677bd5e028711fe36fd3cdfab5c3e5",
+  "analysis_code": {
+    "src/argus/evaluation/statistics.py": "c8259d08eb39aced87476018592ea23698a3dff7713417e5add7448f1fd0de05",
+    "tools/analyze_x3.py": "0d9c71981f468e8f87b783ca5d21fd52e4c81c1355a8991316d9cf5f49513474"
+  },
+  "base_frozen_sha256": "b16b05936bedde387e3b8637be8b72b7d818e8f5a93c48be096584d7f58a359c",
+  "schema": "argus-x3-frozen-v1",
+  "sensor_code_sha256": "502cff0a6793ebfa88ecca6be95b4f707aa390a995eac0849057f98c82fab6a5",
+  "status": "frozen before any X3 test episode; a run also needs the approval file",
+  "x3": {
+    "b": 60,
+    "b_minimum": 40,
+    "candidate": "repair",
+    "cells": [
+      "sta-cor-direct",
+      "sta-cor-relay",
+      "dyn-cor-direct",
+      "dyn-cor-relay"
+    ],
+    "conditions": {
+      "gauss_id": {
+        "cell_params": {
+          "gauss_length_m": 2.0,
+          "sensor_family": "gauss"
+        },
+        "list": "id_test"
+      },
+      "gauss_ood": {
+        "cell_params": {
+          "gauss_length_m": 2.0,
+          "sensor_family": "gauss"
+        },
+        "list": "ood_test"
+      },
+      "ref_id": {
+        "cell_params": {},
+        "list": "id_test"
+      },
+      "ref_ood": {
+        "cell_params": {},
+        "list": "ood_test"
+      },
+      "rho10_id": {
+        "cell_params": {
+          "rho": 0.1
+        },
+        "list": "id_test"
+      }
+    },
+    "control": "cross_rank",
+    "first_position": 80,
+    "replicates": 2,
+    "shifts": {
+      "gauss_id": "ref_id",
+      "gauss_ood": "ref_ood",
+      "ref_ood": null,
+      "rho10_id": "ref_id"
+    }
+  }
+}

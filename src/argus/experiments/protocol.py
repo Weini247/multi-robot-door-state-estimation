@@ -18,7 +18,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from argus.experiments.cells import CELLS, FactorCell, apply_cell
+from argus.experiments.cells import CELLS, PREREGISTERED, CellParameters, FactorCell, apply_cell
 from argus.experiments.runner import EpisodeConfig
 from argus.experiments.splits import SplitEntry, SplitManifest, regenerate
 from argus.policies.baselines import METHOD_SPECS
@@ -92,6 +92,7 @@ def episode_config(
     config_id: str,
     method_params: Mapping[str, float],
     replicate: int,
+    cell_params: CellParameters = PREREGISTERED,
 ) -> EpisodeConfig:
     plan = regenerate(entry, params)
     base = EpisodeConfig(
@@ -103,7 +104,7 @@ def episode_config(
         method_params=tuple(sorted(method_params.items())),
         transport_id=transport_id(entry.building_id, replicate),
     )
-    return apply_cell(base, cell)
+    return apply_cell(base, cell, cell_params)
 
 
 def tuning_configs(prereg: Mapping[str, Any]) -> list[tuple[str, str, dict[str, float]]]:

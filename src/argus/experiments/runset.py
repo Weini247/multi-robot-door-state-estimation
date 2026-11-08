@@ -47,7 +47,7 @@ from argus.experiments.batch import (
     building_losses,
     plan_test_size,
 )
-from argus.experiments.cells import CELLS
+from argus.experiments.cells import CELLS, CellParameters
 from argus.experiments.protocol import (
     TuningResult,
     episode_config,
@@ -76,6 +76,8 @@ FROZEN_SCHEMA = "argus-x1x2-frozen-v1"
 FROZEN_PATH = "configs/experiments/X1_X2_frozen.json"
 APPROVAL_PATH = "configs/experiments/X1_X2_approval.json"
 TEST_LISTS = ("id_test", "ood_test")
+# lists whose episodes always need an approval, whatever the payload says (E09: s2_test)
+GUARDED_LISTS = (*TEST_LISTS, "s2_test")
 AMENDMENT_PATH = "configs/experiments/preregistration_v1_amendment_01.json"
 AMENDMENT_02_PATH = "configs/experiments/preregistration_v1_amendment_02.json"
 AMENDMENT_03_PATH = "configs/experiments/preregistration_v1_amendment_03.json"
@@ -440,8 +442,8 @@ def _config(payload: Mapping[str, Any]) -> tuple[SplitEntry, EpisodeConfig]:
     if entry.split not in payload["allowed_splits"]:
         raise RunSetError(f"{entry.building_id} is in {entry.split}, not allowed here")
     root = Path(payload["root"])
-    if entry.split in TEST_LISTS:
-        approval = root / APPROVAL_PATH
+    if entry.split in GUARDED_LISTS:
+        approval = root / payload.get("approval_path", APPROVAL_PATH)
         if not approval.exists() or payload.get("approval_sha256") != file_sha256(approval):
             raise RunSetError(f"{entry.building_id}: test episode without a matching approval")
     if source_sha256(root) != payload["src_sha256"]:
@@ -457,7 +459,12 @@ def _config(payload: Mapping[str, Any]) -> tuple[SplitEntry, EpisodeConfig]:
         payload["config_id"],
         payload["method_params"],
         payload["replicate"],
+        CellParameters(**payload.get("cell_params", {})),
     )
+    if "loss_false_open" in payload:  # E09 cost-ratio intervention on the policy level
+        config = dataclasses.replace(
+            config, loss_false_open=float(payload["loss_false_open"]), loss_false_closed=1.0
+        )
     return entry, dataclasses.replace(config, code_commit=payload["code_commit"])
 
 
@@ -590,6 +597,12 @@ def summarize(
         "config_sha256": config.config_sha256,
         **coverage,
     }
+    if trace is not None and "policy_actions" in trace:  # E09: counted information actions
+        totals: dict[str, int] = {}
+        for counts in trace["policy_actions"].values():
+            for name, n in counts.items():
+                totals[name] = totals.get(name, 0) + n
+        row["policy_actions"] = totals
     return row, raw
 
 

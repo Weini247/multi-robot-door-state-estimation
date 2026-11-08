@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from typing import Protocol
 
 from argus.core.events import KeyedRandom
 from argus.dynamics.binary_ctmc import BinaryCTMC
@@ -135,11 +136,17 @@ def sample_private_noise(
     return rng.bernoulli(private_error, "sensor.private", robot_id, passage_id, slot)
 
 
+class BiasSource(Protocol):
+    """A shared error g at a place and time: BiasField or the X3 Gaussian field."""
+
+    def bias_at(self, point: Point, tick: int) -> int: ...
+
+
 @dataclass(frozen=True, slots=True)
 class SharedBiasNoise:
     """y = z XOR g_cell(t) XOR eps with the field's g and private error q."""
 
-    bias: BiasField
+    bias: BiasSource
     private_error: float
     rng: KeyedRandom
 

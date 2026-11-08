@@ -1,0 +1,42 @@
+{
+  "schema": "argus-preregistration-amendment-v1",
+  "amends": "configs/experiments/preregistration_v1.json",
+  "follows": "configs/experiments/preregistration_v1_amendment_03.json",
+  "date": "2026-11-04",
+  "authority": "owner instructed 'ja bitte setzte fort' on the proposed E08-T04; design decisions by the agent, the budget needs a separate owner approval (configs/experiments/X3_approval.json)",
+  "trigger": "E08-T04 (second sensor family, combined shift) and the deferred rho .1 sensitivity (amendment 01, O5)",
+  "test_data_seen": "X1/X2 results on positions 0-79 are known and motivated no change to methods, configurations or estimands; positions 80-139 of both lists have never been run",
+  "x3": {
+    "b": 60,
+    "b_minimum": 40,
+    "first_position": 80,
+    "replicates": 2,
+    "cells": ["sta-cor-direct", "sta-cor-relay", "dyn-cor-direct", "dyn-cor-relay"],
+    "candidate": "repair",
+    "control": "cross_rank",
+    "conditions": {
+      "ref_id": {"list": "id_test", "cell_params": {}},
+      "rho10_id": {"list": "id_test", "cell_params": {"rho": 0.1}},
+      "gauss_id": {"list": "id_test", "cell_params": {"sensor_family": "gauss", "gauss_length_m": 2.0}},
+      "ref_ood": {"list": "ood_test", "cell_params": {}},
+      "gauss_ood": {"list": "ood_test", "cell_params": {"sensor_family": "gauss", "gauss_length_m": 2.0}}
+    },
+    "shifts": {
+      "rho10_id": "ref_id",
+      "gauss_id": "ref_id",
+      "ref_ood": null,
+      "gauss_ood": "ref_ood"
+    }
+  },
+  "decisions": {
+    "B1 scope": "All selected X1/X2 configurations are reused unchanged; nothing is tuned on these buildings. Only the four correlated cells run, because the shift touches only the shared error.",
+    "B2 buildings": "Positions 80-139 of id_test and ood_test, never run before. The replacement rule of amendment 01 (O2) and A1 apply.",
+    "B3 Gaussian field": "src/argus/sensors/ood_field.py: 32 random Fourier features, length 2.0 m, time constant 1 / rate_sum = 20 s, P(g = 1) = rho = .05 exactly, private error matched to e = .14. Agents keep the cell model, so this condition is a documented model misspecification.",
+    "B4 rho .1": "Cell field with rho .1 and q .05, model-matched: the sensitivity deferred by amendment 01, O5.",
+    "B5 reference": "ref_id and ref_ood repeat the preregistered cell sensor on the same fresh buildings, so a shift effect is a paired difference on identical buildings.",
+    "B6 estimands": "Per condition, on the four cells with equal weights and families 50/50 (OOD also per family): mean loss, coverage, bytes, gain and coverage loss of the candidate against the control and against every other control, gain per cell. Per shift: difference of gain and of loss against its reference, same bootstrap draws.",
+    "B7 status": "Descriptive only: intervals, no p-values, no H2 decision and no new claim. H2 stays decided by X1/X2. A reversal of the sign of the gain or a result against the mechanism is reported as a finding.",
+    "B8 inference": "Paired cluster bootstrap over buildings, stratified by family, 10 000 draws, seed 20261103.",
+    "B9 stop": "A budget stop evaluates the largest even position prefix complete in both lists; below 40 the batch is inconclusive and is never topped up. tools/analyze_x3.py is frozen by hash in configs/experiments/X3_frozen.json and runs once."
+  }
+}

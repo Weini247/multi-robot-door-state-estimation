@@ -119,9 +119,11 @@ def prereg_manifest_threshold(prereg: dict) -> float:
 
 
 def test_preregistration_matches_the_code(prereg: dict, entries: tuple) -> None:
-    assert prereg["cells"]["parameters"] == json.loads(
-        json.dumps(dataclasses.asdict(PREREGISTERED))
-    )
+    current = json.loads(json.dumps(dataclasses.asdict(PREREGISTERED)))
+    # the X3 fields (amendment 04) default to the preregistered cell sensor
+    assert current.pop("sensor_family") == "cells"
+    assert current.pop("gauss_length_m") == 2.0
+    assert prereg["cells"]["parameters"] == current
     assert prereg["cells"]["ids"] == [c.cell_id for c in CELLS]
     roles = {m: s.role for m, s in METHOD_SPECS.items()}
     assert set(prereg["methods"]["controls"]) == {m for m, r in roles.items() if r == "control"}

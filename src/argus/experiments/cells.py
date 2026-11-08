@@ -57,6 +57,8 @@ class CellParameters:
     bias_rate_sum: float = 0.05
     bias_cell_m: float = 4.0
     relay_hop_limit: int = 3
+    sensor_family: str = "cells"  # "gauss": X3, nominal model stays the cell model
+    gauss_length_m: float = 2.0
 
 
 PREREGISTERED = CellParameters()  # values approved 2026-11-02 (rho .05, matched q .10)
@@ -80,7 +82,13 @@ def apply_cell(
         z_model = BinaryCTMC(0.0, 0.0)
     bias: SensorBias | None = None
     if cell.correlated:
-        bias = SensorBias(params.rho, params.bias_rate_sum, params.bias_cell_m)
+        bias = SensorBias(
+            params.rho,
+            params.bias_rate_sum,
+            params.bias_cell_m,
+            params.sensor_family,
+            params.gauss_length_m,
+        )
         nominal = NominalPassageModel(
             z_model,
             BinaryCTMC(*bias.rates),

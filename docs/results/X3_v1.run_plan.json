@@ -1,0 +1,20 @@
+{
+  "approval": {
+    "approved_by": "owner (GitHub Weini247), explicit approval in chat ('Ja, freigeben', 2026-11-04)",
+    "basis": "docs/EXPERIMENT_PROTOCOL_AMENDMENT_04.md; calib probe runs/x3_probe_calib_v1: 12.4 CPU-s per episode, 16 800 episodes, about 58 CPU-h, +15 %; wall 14-19 h, cap 24 h",
+    "cpu_hours": 67,
+    "date": "2026-11-04",
+    "frozen_sha256": "2285696d7a2d3adb6a1cabd29a5c70fcf7c4e3d1896cebaa051170304280e2a7",
+    "src_sha256": "c425d06aa1b713c170a0272e4a29413b1bc5b5b61b78197b949355739d5ec3c6",
+    "wall_hours": 24
+  },
+  "approval_sha256": "bd7e6cc8225ae00de3ac6946af30b6e5d26af4cf513e686b27d4b66dc5be934e",
+  "b": 60,
+  "first_commit": "09d8cccc16608770a3dd90afa5fdc8a3a5bb393a",
+  "frozen_sha256": "2285696d7a2d3adb6a1cabd29a5c70fcf7c4e3d1896cebaa051170304280e2a7",
+  "replacements": {
+    "id_test": [],
+    "ood_test": []
+  },
+  "src_sha256": "c425d06aa1b713c170a0272e4a29413b1bc5b5b61b78197b949355739d5ec3c6"
+}

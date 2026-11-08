@@ -1,0 +1,22 @@
+{
+  "approval": {
+    "approved_by": "owner (GitHub Weini247), explicit approval in chat ('Ja, freigeben', 2026-11-07)",
+    "basis": "docs/EXPERIMENT_PROTOCOL_S2.md; calib probe and spread pilot (docs/results/s2_pilot_calib_v1): 12.1 CPU-s and 3.5 s wall per episode, 12 000 episodes, about 40 CPU-h and 12 h; caps +15 % CPU, 18 h wall",
+    "cpu_hours": 46,
+    "date": "2026-11-07",
+    "frozen_sha256": "98f7261f4e9d593240dbb71936a0069ecc737db123dbb6fa9ca5b008664235d9",
+    "mde_b100": {
+      "S2-H1": 0.009,
+      "S2-H2": 0.03,
+      "S2-H3": 0.028
+    },
+    "src_sha256": "88de3836c56e4c670faf5843e0b79190d46ac3a3225fbafd93094eb880d6e255",
+    "wall_hours": 18
+  },
+  "approval_sha256": "48e138279115728d20a052ebfd44b568e66cf1dc461f0074e10066dd843bc76b",
+  "b": 100,
+  "first_commit": "48f3040885ad129d55d2b2ba7903d65a83ca002e",
+  "frozen_sha256": "98f7261f4e9d593240dbb71936a0069ecc737db123dbb6fa9ca5b008664235d9",
+  "replacements": [],
+  "src_sha256": "88de3836c56e4c670faf5843e0b79190d46ac3a3225fbafd93094eb880d6e255"
+}

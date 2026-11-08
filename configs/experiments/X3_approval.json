@@ -1,0 +1,9 @@
+{
+  "frozen_sha256": "2285696d7a2d3adb6a1cabd29a5c70fcf7c4e3d1896cebaa051170304280e2a7",
+  "src_sha256": "c425d06aa1b713c170a0272e4a29413b1bc5b5b61b78197b949355739d5ec3c6",
+  "cpu_hours": 67,
+  "wall_hours": 24,
+  "approved_by": "owner (GitHub Weini247), explicit approval in chat ('Ja, freigeben', 2026-11-04)",
+  "date": "2026-11-04",
+  "basis": "docs/EXPERIMENT_PROTOCOL_AMENDMENT_04.md; calib probe runs/x3_probe_calib_v1: 12.4 CPU-s per episode, 16 800 episodes, about 58 CPU-h, +15 %; wall 14-19 h, cap 24 h"
+}

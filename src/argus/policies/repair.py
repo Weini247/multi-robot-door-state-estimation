@@ -78,6 +78,13 @@ class RepairPolicy:
     max_sends_per_decision: int = 2
     frontier: FrontierPolicy = field(default_factory=FrontierPolicy)
     arrival_m: float = 0.3
+    # E09 arms: switch an information action off; the scoring itself is unchanged
+    observe: bool = True
+    send: bool = True
+    action_counts: dict[str, int] = field(
+        default_factory=lambda: {"observe_decisions": 0, "send_frames": 0, "explore_decisions": 0},
+        repr=False,
+    )
     _memory: dict[EvidenceId, Observation] = field(default_factory=dict, repr=False)
     _sent: dict[tuple[EvidenceId, str], int] = field(default_factory=dict, repr=False)
     last_candidates: tuple[Candidate, ...] = field(default=(), repr=False)
@@ -210,8 +217,8 @@ class RepairPolicy:
 
     def act(self, view: AgentView, random_key: str) -> AgentAction:
         self._remember(view)
-        observe = self._observe_candidates(view)
-        sends = self._send_candidates(view)
+        observe = self._observe_candidates(view) if self.observe else []
+        sends = self._send_candidates(view) if self.send else []
         self.last_candidates = tuple(observe + sends)
         chosen: list[Send] = []
         budget = view.remaining_bytes
@@ -225,12 +232,15 @@ class RepairPolicy:
             budget -= candidate.frame_bytes
             key = (candidate.send.evidence_id, candidate.send.recipient)
             self._sent[key] = self._sent.get(key, 0) + 1
+        self.action_counts["send_frames"] += len(chosen)
         best = max(observe, key=lambda c: (c.value, c.entity), default=None)
         decision_ticks = self.frontier.decision_ticks
         if best is not None and best.value > 0 and best.target is not None:
+            self.action_counts["observe_decisions"] += 1
             v, omega = self._approach(view, best.target)
             kind = "move" if (v, omega) != (0.0, 0.0) else "wait"
             return AgentAction(kind, decision_ticks, v, omega, sends=tuple(chosen))
+        self.action_counts["explore_decisions"] += 1
         fallback = self.frontier.act(view, random_key)
         return AgentAction(
             fallback.kind,

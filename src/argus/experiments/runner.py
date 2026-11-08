@@ -62,8 +62,14 @@ from argus.dynamics.binary_ctmc import BinaryCTMC
 from argus.policies.baselines import METHOD_SPECS, MethodContext, MethodSpec
 from argus.policies.voi import Losses
 from argus.sensors.binary import BinarySensor, IndependentNoise, NoiseModel, SensorConfig
-from argus.sensors.correlated import BiasField, SharedBiasNoise, matched_private_error
+from argus.sensors.correlated import (
+    BiasField,
+    BiasSource,
+    SharedBiasNoise,
+    matched_private_error,
+)
 from argus.sensors.occupancy import scan_map
+from argus.sensors.ood_field import GaussianThresholdField
 from argus.world.geometry import Geometry, Rect
 from argus.world.scenario import ScenarioSpec, WorldBackend2D
 
@@ -102,16 +108,24 @@ MANIFEST_SCHEMA = 1
 
 @dataclass(frozen=True, slots=True)
 class SensorBias:
-    """Shared-bias field: P(g=1) = rho, mu_01 + mu_10 = rate_sum, square cells."""
+    """Shared-bias field: P(g=1) = rho, mu_01 + mu_10 = rate_sum, square cells.
+
+    family "gauss" generates g from the thresholded Gaussian field of X3 instead, with
+    time constant 1 / rate_sum and correlation length length_m.
+    """
 
     rho: float
     rate_sum: float = 0.05
     cell_size_m: float = 4.0
+    family: str = "cells"
+    length_m: float = 2.0
 
     def __post_init__(self) -> None:
         if not 0.0 < self.rho < 0.5:
             raise ValueError("rho must be in (0, 0.5)")
-        for name in ("rate_sum", "cell_size_m"):
+        if self.family not in ("cells", "gauss"):
+            raise ValueError(f"unknown sensor family {self.family!r}")
+        for name in ("rate_sum", "cell_size_m", "length_m"):
             value = getattr(self, name)
             if not math.isfinite(value) or value <= 0:
                 raise ValueError(f"{name} must be finite and > 0")
@@ -232,6 +246,12 @@ class EpisodeConfig:
                 self.sensor_bias.rho,
                 self.sensor_bias.rate_sum,
                 self.sensor_bias.cell_size_m,
+                # the default family keeps the historical config hashes
+                *(
+                    ()
+                    if self.sensor_bias.family == "cells"
+                    else (self.sensor_bias.family, self.sensor_bias.length_m)
+                ),
             ],
             "hop_limit": self.hop_limit,
             "method_params": [[n, v] for n, v in sorted(self.method_params)],
@@ -337,6 +357,7 @@ class EpisodeTrace:
         self.channel_dropped: dict[str, int] = {}
         self.channel_rejects: dict[str, int] = {}
         self.hop_limited = 0
+        self.policy_actions: dict[str, dict[str, int]] = {}  # E09: counted actions
 
     def _blocked(self, cell: GridIndex, obstacles: tuple[Rect, ...]) -> bool:
         r = self.resolution
@@ -370,6 +391,8 @@ class EpisodeTrace:
             "channel_dropped_bytes": dict(sorted(self.channel_dropped.items())),
             "channel_rejects": dict(sorted(self.channel_rejects.items())),
             "hop_limited": self.hop_limited,
+            # only policies that count actions add this key; older traces stay unchanged
+            **({"policy_actions": self.policy_actions} if self.policy_actions else {}),
         }
 
 
@@ -392,14 +415,26 @@ def build_noise(config: EpisodeConfig) -> tuple[str, NoiseModel]:
         )
     else:
         bias = config.sensor_bias
-        model_name = "binary-shared-bias-v1"
-        bias_field = BiasField(
-            bias.cell_size_m,
-            *bias.rates,
-            spec.tick_seconds,
-            KeyedRandom(config.seed_sensor),
-            spec.scenario_id,
-        )
+        bias_field: BiasSource
+        if bias.family == "gauss":
+            model_name = "binary-gauss-threshold-v1"
+            bias_field = GaussianThresholdField(
+                bias.rho,
+                bias.length_m,
+                1.0 / bias.rate_sum,
+                spec.tick_seconds,
+                KeyedRandom(config.seed_sensor),
+                spec.scenario_id,
+            )
+        else:
+            model_name = "binary-shared-bias-v1"
+            bias_field = BiasField(
+                bias.cell_size_m,
+                *bias.rates,
+                spec.tick_seconds,
+                KeyedRandom(config.seed_sensor),
+                spec.scenario_id,
+            )
         noise = SharedBiasNoise(
             bias_field,
             matched_private_error(config.sensor_error, bias.rho),
@@ -413,8 +448,10 @@ class ExperimentRunner:
 
     def __init__(self, trace: bool = False) -> None:
         self.trace = trace
+        self._policies: dict[str, Policy] = {}
 
     def run(self, config: EpisodeConfig) -> EpisodeResult:
+        self._policies = {}  # never report the previous episode's policies
         requests = generate_requests(config)
         self._trace = (
             EpisodeTrace(config.scenario.geometry, config.map_resolution_m) if self.trace else None
@@ -457,6 +494,11 @@ class ExperimentRunner:
                 self._trace.channel_dropped = dict(stats.dropped_bytes)
                 self._trace.channel_rejects = {f"{a}/{b}": n for (a, b), n in stats.rejects.items()}
             self._trace.hop_limited = getattr(self, "hop_limited", 0)
+            self._trace.policy_actions = {
+                rid: dict(counts)
+                for rid, policy in sorted(self._policies.items())
+                if (counts := getattr(policy, "action_counts", None)) is not None
+            }
             trace = self._trace.to_json()
         return EpisodeResult(
             config.episode_id,
@@ -502,6 +544,7 @@ class ExperimentRunner:
         self.last_channel = channel
         team = tuple(sorted(s.robot_id for s in spec.starts))
         policies = {rid: METHODS[config.method_id](config, team) for rid in team}
+        self._policies = policies
         self.recipient_model_log: list[RecipientModelRecord] = []
         self.hop_limited = 0
         received_hop: dict[tuple[str, EvidenceId], int] = {}
@@ -694,7 +737,9 @@ def build_manifest(
             *METHOD_SPECS[config.method_id].components,
             "binary-independent-sensor"
             if config.sensor_bias is None
-            else "binary-shared-bias-sensor",
+            else "binary-shared-bias-sensor"
+            if config.sensor_bias.family == "cells"
+            else "binary-gauss-threshold-sensor",
             "gilbert-elliott-channel",
         ],
         "python": platform.python_version(),

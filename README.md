@@ -4,7 +4,11 @@
 
 A preregistered simulation study. The code is the study's simulator, estimators, methods and experiment pipeline (internal code name `argus`).
 
-> **Status (2026-11-04).** The confirmatory test batch has been run: 17 920 episodes on 160 held-out buildings, all valid. The frozen analysis was then run exactly once. **H2 is not supported**: `repair` lowers the decision loss against the preregistered control by 5.6 % [3.4, 7.9], below the 10 % threshold, and loses 8.9 % coverage, above the 5 % limit. Full report: [`docs/results/X1_X2_TEST_v1_REPORT.md`](docs/results/X1_X2_TEST_v1_REPORT.md).
+> **Status (2026-11-09).** Three frozen batches have been run, each analysed exactly once:
+>
+> 1. **Confirmatory test (X1/X2):** 17 920 episodes on 160 held-out buildings. **H2 is not supported**: `repair` lowers the decision loss against the preregistered control by 5.6 % [3.4, 7.9], below the 10 % threshold, and loses 8.9 % coverage, above the 5 % limit. [Report](docs/results/X1_X2_TEST_v1_REPORT.md).
+> 2. **Robustness batch (X3, descriptive):** 16 800 episodes on 120 fresh buildings. The gain is stable at 4.6–5.9 %, also under a misspecified sensor model. [Report](docs/results/X3_v1_REPORT.md).
+> 3. **Study 2 (separately preregistered, interventional):** 12 000 episodes on 100 new buildings. Targeted re-observation alone helps (+2.2 %), but its gain does not fall with faster doors, which refutes our own explanation from the first study. [Report](docs/results/S2_v1_REPORT.md).
 
 ## Results at a glance
 
@@ -25,6 +29,33 @@ A preregistered simulation study. The code is the study's simulator, estimators,
 ![Decision loss against bytes sent, per method](docs/figures/loss_vs_bytes.svg)
 
 The figures are generated from `docs/results/X1_X2_TEST_v1.json` by `tools/make_figures.py`, which uses the standard library only.
+
+### Robustness batch (X3)
+
+A second frozen, purely descriptive batch (amendment 04) re-tests the four correlated cells on 60 fresh buildings per list. It adds a stronger shared error (ρ = 0.1) and a second sensor family, a soft thresholded Gaussian field, while the robots keep their cell model.
+
+- The gain against `cross_rank` stays at 4.6–5.9 % in all five conditions, and no shift changes it detectably.
+- The misspecified sensor model does no measurable harm.
+- Against `dynamics_ids`, `repair` is worse in the reference condition (−2.7 % [−5.4, −0.4]) and indistinguishable elsewhere.
+
+An exploratory [regime map](docs/results/REGIME_MAP.md) of the X1/X2 batch shows `repair` against each control per cell; against `dynamics_ids` no cell differs detectably.
+
+### Study 2: intervening on door tempo and costs
+
+The first study suggested why gains are small with switching doors: under 4:1 costs even certain knowledge of an open door decays below the decision threshold within about 12 s. Study 2 tests this by changing its inputs, door tempo $s$ (both rates scaled, open fraction fixed) and cost ratio, and by splitting `repair` into re-observation only and sending only.
+
+| Hypothesis (re-observation only vs `no_comm`) | Estimate [family-wise interval] | Outcome |
+|---|---|---|
+| S2-H1: targeted re-observation helps | +0.022 [+0.014, +0.030] | **supported** |
+| S2-H2: the gain falls with door tempo | +0.003 [−0.014, +0.021] | **against** |
+| S2-H3: window-matched conditions are equal | −0.008 [−0.019, +0.002] | consistent, uninformative given S2-H2 |
+
+- **The window account is refuted for re-observation.** The policy responds to tempo instead: at the fastest doors it decides to look again 326 instead of 145 times and pays with coverage (0.206 vs 0.345 for `no_comm`). The gain stays constant.
+- **The window does limit sending.** At the fastest doors sending adds exactly nothing, and with static doors only sending helps (+5–6 %).
+- **Targeting matters.** Untargeted return by age adds nothing in any condition.
+- **Replication.** The condition matching a study 1 cell reproduces its losses on new buildings (for example `repair` 0.292 vs 0.293).
+
+![Study 2: gain of re-observation only and sending only per condition](docs/figures/s2_gain_by_condition.svg)
 
 ## Problem
 
@@ -61,9 +92,10 @@ The machine-readable preregistration and its amendments are in [`configs/experim
 - `preregistration_v1.json`;
 - amendment 01: channel fairness, coverage definition, infrastructure failures, sensitivity analyses;
 - amendment 02: a documented deviation in validation tuning and a precise repair-lag definition;
-- amendment 03: rules the analysis needs that the preregistration left open (replacements, failed episodes, the Holm family, zero-loss controls).
+- amendment 03: rules the analysis needs that the preregistration left open (replacements, failed episodes, the Holm family, zero-loss controls);
+- amendment 04: the descriptive robustness batch X3 (`X3_frozen.json`), written after the X1/X2 analysis and changing no decision.
 
-All amendments were written before any test episode. `X1_X2_frozen.json` is the frozen run set. It is recomputed from the committed evidence, and the test runner refuses to start if anything differs. It also holds the hashes of the analysis code (`src/argus/evaluation/statistics.py`, `tools/analyze_x1x2.py`). The analysis refuses to run if its code differs, if the batch is unfinished, or if the source tree changed. A dry run on calibration data is in `docs/results/ANALYSIS_DRY_RUN_calib_v3.md`; it tests the pipeline and is not a result.
+Amendments 01–03 were written before any test episode. Study 2 has its own preregistration (`preregistration_s2.json`), run set (`S2_frozen.json`) and building manifest (`configs/splits/splits_v2.json`, 100 buildings disjoint from v1), all frozen before its first test episode. `X1_X2_frozen.json` is the frozen run set. It is recomputed from the committed evidence, and the test runner refuses to start if anything differs. It also holds the hashes of the analysis code (`src/argus/evaluation/statistics.py`, `tools/analyze_x1x2.py`). The analysis refuses to run if its code differs, if the batch is unfinished, or if the source tree changed. A dry run on calibration data is in `docs/results/ANALYSIS_DRY_RUN_calib_v3.md`; it tests the pipeline and is not a result.
 
 ## What exists
 
@@ -77,7 +109,7 @@ All amendments were written before any test episode. `X1_X2_frozen.json` is the 
 
 Calibration and validation data are included with full per-episode raw records: `docs/results/val_tuning_v2.jsonl`, `calib_pilot_v2/` and the calibration probe `test_probe_calib_v3/`. They were used for configuration selection and sample-size planning, **not as evidence**.
 
-The test results are included as aggregated estimates (`docs/results/X1_X2_TEST_v1.*`). The per-episode raw test data (131 MB) are hash-bound in the private research repository and available on request.
+The test results are included as aggregated estimates (`docs/results/X1_X2_TEST_v1.*`, `X3_v1.*`, `S2_v1.*`); the study 2 spread pilot on calibration buildings is in `docs/results/s2_pilot_calib_v1/`. The frozen run sets bind source-tree hashes from the private development history. Later code changes alter those hashes, so the guards refuse to re-run an earlier batch on the current tree; the matching commits are available on request. The per-episode raw test data (131 MB) are hash-bound in the private research repository and available on request.
 
 ## Reproduce
 

@@ -1,0 +1,1677 @@
+{
+  "analysis_code": {
+    "src/argus/evaluation/statistics.py": "c8259d08eb39aced87476018592ea23698a3dff7713417e5add7448f1fd0de05",
+    "tools/analyze_s2.py": "646df298c6246bd687c206023fd19fdbc3dd4c411ed7d8da3e4d350e06f57bad"
+  },
+  "descriptive": {
+    "per_condition": {
+      "s0-c2": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 1165.38,
+            "observe_decisions": 38.62,
+            "send_frames": 866.915
+          },
+          "repair_observe": {
+            "explore_decisions": 1193.81,
+            "observe_decisions": 10.19,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 844.835
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 41555.445,
+            "high": 49077.170999999995,
+            "low": 34991.614125
+          },
+          "dynamics_ids": {
+            "estimate": 758434.665,
+            "high": 807777.33575,
+            "low": 708033.8557499999
+          },
+          "no_comm": {
+            "estimate": 46323.12,
+            "high": 54861.72825,
+            "low": 38477.292375
+          },
+          "repair": {
+            "estimate": 203897.05,
+            "high": 230765.422125,
+            "low": 176939.54150000002
+          },
+          "repair_observe": {
+            "estimate": 42858.03,
+            "high": 49980.636374999995,
+            "low": 36197.837250000004
+          },
+          "repair_send": {
+            "estimate": 213011.61,
+            "high": 241448.87199999997,
+            "low": 184548.496125
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.24093297335179187,
+            "high": 0.25707998488020833,
+            "low": 0.2252449631680513
+          },
+          "dynamics_ids": {
+            "estimate": 0.23569232740294266,
+            "high": 0.2511235107148181,
+            "low": 0.2209426922817234
+          },
+          "no_comm": {
+            "estimate": 0.23862947121033584,
+            "high": 0.25457653986923556,
+            "low": 0.22344926371059787
+          },
+          "repair": {
+            "estimate": 0.23238884833414106,
+            "high": 0.2482924177335585,
+            "low": 0.21736147323463562
+          },
+          "repair_observe": {
+            "estimate": 0.23814808858312053,
+            "high": 0.25469875234208683,
+            "low": 0.22206342248345765
+          },
+          "repair_send": {
+            "estimate": 0.23946341592029993,
+            "high": 0.25534402301684467,
+            "low": 0.22408275932611948
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.005322744170327742,
+            "high": 0.010042720932365648,
+            "level": 0.95,
+            "low": 0.0015229650447846326
+          },
+          "repair/dynamics_ids": {
+            "estimate": -0.019948348027428953,
+            "high": 0.007205361042027677,
+            "level": 0.95,
+            "low": -0.04746054209283247
+          },
+          "repair/no_comm": {
+            "estimate": 0.032358905035484886,
+            "high": 0.06836517582306605,
+            "level": 0.95,
+            "low": -0.003713122024225888
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": -0.034108112921898526,
+            "high": -0.017391697699028274,
+            "level": 0.95,
+            "low": -0.05164944671790285
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.018925312605609923,
+            "high": 0.03958133190489327,
+            "level": 0.95,
+            "low": -0.0013668153198407803
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": -0.002226378128061146,
+            "high": 0.021501386668139662,
+            "level": 0.95,
+            "low": -0.025929094262730427
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.049172017573504534,
+            "high": 0.07332937858385849,
+            "level": 0.95,
+            "low": 0.026264406499765868
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.24527083333333333,
+            "high": 0.2665625,
+            "low": 0.22487395833333335
+          },
+          "dynamics_ids": {
+            "estimate": 0.23393750000000002,
+            "high": 0.25352083333333336,
+            "low": 0.21489583333333334
+          },
+          "no_comm": {
+            "estimate": 0.24658333333333332,
+            "high": 0.2677921875,
+            "low": 0.22608333333333336
+          },
+          "repair": {
+            "estimate": 0.23860416666666667,
+            "high": 0.2585635416666667,
+            "low": 0.2195203125
+          },
+          "repair_observe": {
+            "estimate": 0.24191666666666667,
+            "high": 0.26216666666666666,
+            "low": 0.2225416666666667
+          },
+          "repair_send": {
+            "estimate": 0.23445833333333332,
+            "high": 0.25429166666666664,
+            "low": 0.21497916666666667
+          }
+        },
+        "window_s": Infinity
+      },
+      "s0-c4": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 1196.845,
+            "observe_decisions": 7.155,
+            "send_frames": 865.27
+          },
+          "repair_observe": {
+            "explore_decisions": 1192.285,
+            "observe_decisions": 11.715,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 823.35
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 41555.445,
+            "high": 49077.170999999995,
+            "low": 34991.614125
+          },
+          "dynamics_ids": {
+            "estimate": 758434.665,
+            "high": 807777.33575,
+            "low": 708033.8557499999
+          },
+          "no_comm": {
+            "estimate": 46323.12,
+            "high": 54861.72825,
+            "low": 38477.292375
+          },
+          "repair": {
+            "estimate": 201970.01,
+            "high": 229174.85212499998,
+            "low": 174428.815875
+          },
+          "repair_observe": {
+            "estimate": 42336.84,
+            "high": 50587.724624999995,
+            "low": 34999.177124999995
+          },
+          "repair_send": {
+            "estimate": 203947.495,
+            "high": 232309.02949999998,
+            "low": 175456.07762500003
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.24093297335179187,
+            "high": 0.25707998488020833,
+            "low": 0.2252449631680513
+          },
+          "dynamics_ids": {
+            "estimate": 0.23569232740294266,
+            "high": 0.2511235107148181,
+            "low": 0.2209426922817234
+          },
+          "no_comm": {
+            "estimate": 0.23862947121033584,
+            "high": 0.25457653986923556,
+            "low": 0.22344926371059787
+          },
+          "repair": {
+            "estimate": 0.23749319919390696,
+            "high": 0.2541448793721711,
+            "low": 0.22191428757031242
+          },
+          "repair_observe": {
+            "estimate": 0.23612890838741077,
+            "high": 0.25210810289061325,
+            "low": 0.22068910930134514
+          },
+          "repair_send": {
+            "estimate": 0.23946905443445266,
+            "high": 0.25536431664904263,
+            "low": 0.22427391424308343
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.003994560598334029,
+            "high": 0.009017402441342736,
+            "level": 0.95,
+            "low": 0.0
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.029838781508862655,
+            "high": 0.05108590209273045,
+            "level": 0.95,
+            "low": 0.011515977796078339
+          },
+          "repair/no_comm": {
+            "estimate": 0.07428182899881008,
+            "high": 0.10405570370573287,
+            "level": 0.95,
+            "low": 0.0472697636317524
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": -0.05023603812238364,
+            "high": -0.02869456907790358,
+            "level": 0.95,
+            "low": -0.07438255879292356
+          },
+          "repair_observe/no_comm": {
+            "estimate": -0.0021247662757097885,
+            "high": 0.01926359573495233,
+            "level": 0.95,
+            "low": -0.02713460524691998
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": 0.01817048187405368,
+            "high": 0.041404213746400985,
+            "level": 0.95,
+            "low": -0.004113239212624821
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.06314805371409138,
+            "high": 0.08972691621209623,
+            "level": 0.95,
+            "low": 0.03783647766318854
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.24414583333333334,
+            "high": 0.26531354166666665,
+            "low": 0.22356250000000003
+          },
+          "dynamics_ids": {
+            "estimate": 0.23389583333333333,
+            "high": 0.25341770833333327,
+            "low": 0.21485416666666668
+          },
+          "no_comm": {
+            "estimate": 0.24512499999999998,
+            "high": 0.26635416666666667,
+            "low": 0.2247291666666667
+          },
+          "repair": {
+            "estimate": 0.22691666666666666,
+            "high": 0.2473130208333333,
+            "low": 0.20729114583333333
+          },
+          "repair_observe": {
+            "estimate": 0.24564583333333334,
+            "high": 0.266271875,
+            "low": 0.225875
+          },
+          "repair_send": {
+            "estimate": 0.22964583333333333,
+            "high": 0.25002083333333336,
+            "low": 0.2099166666666667
+          }
+        },
+        "window_s": Infinity
+      },
+      "s0.25-c2": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 1039.205,
+            "observe_decisions": 164.795,
+            "send_frames": 927.575
+          },
+          "repair_observe": {
+            "explore_decisions": 1084.375,
+            "observe_decisions": 119.625,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 939.99
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 45739.635,
+            "high": 52776.854625,
+            "low": 39495.390374999995
+          },
+          "dynamics_ids": {
+            "estimate": 761183.295,
+            "high": 808821.29975,
+            "low": 711425.913875
+          },
+          "no_comm": {
+            "estimate": 47999.490000000005,
+            "high": 55376.076375,
+            "low": 41429.68425
+          },
+          "repair": {
+            "estimate": 207631.185,
+            "high": 229972.96824999998,
+            "low": 186384.07287499998
+          },
+          "repair_observe": {
+            "estimate": 40644.81,
+            "high": 46048.14375,
+            "low": 35912.051625
+          },
+          "repair_send": {
+            "estimate": 215921.33500000002,
+            "high": 239895.512625,
+            "low": 193133.146125
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.28486385610616605,
+            "high": 0.30433712316781697,
+            "low": 0.26564455498948353
+          },
+          "dynamics_ids": {
+            "estimate": 0.270274651110761,
+            "high": 0.28899181355368436,
+            "low": 0.25214585305640624
+          },
+          "no_comm": {
+            "estimate": 0.2807593044488256,
+            "high": 0.3006680853493943,
+            "low": 0.2612358386272623
+          },
+          "repair": {
+            "estimate": 0.26451126063463554,
+            "high": 0.2834395448300775,
+            "low": 0.2462501846844776
+          },
+          "repair_observe": {
+            "estimate": 0.2701621667376458,
+            "high": 0.28900930224651333,
+            "low": 0.25166943615176723
+          },
+          "repair_send": {
+            "estimate": 0.27864884217052044,
+            "high": 0.29802389892616615,
+            "low": 0.2596752526120083
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.004893601245643975,
+            "high": 0.01396210696887484,
+            "level": 0.95,
+            "low": -0.003752715932389147
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.004531142001382604,
+            "high": 0.02041766248820777,
+            "level": 0.95,
+            "low": -0.012184738348809886
+          },
+          "repair/no_comm": {
+            "estimate": 0.038926373544895254,
+            "high": 0.05792568701267264,
+            "level": 0.95,
+            "low": 0.020052555123503086
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": -0.014131019122955335,
+            "high": 0.0013995644214381397,
+            "level": 0.95,
+            "low": -0.03097136841483346
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.020909023504114943,
+            "high": 0.034421086113688035,
+            "level": 0.95,
+            "low": 0.007409062362087182
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": -0.004531142001382493,
+            "high": 0.01376922187789168,
+            "level": 0.95,
+            "low": -0.024577152224873323
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.03017720768147103,
+            "high": 0.04833171046974772,
+            "level": 0.95,
+            "low": 0.011878250124961345
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.27960416666666665,
+            "high": 0.29472916666666665,
+            "low": 0.26514531249999995
+          },
+          "dynamics_ids": {
+            "estimate": 0.27127083333333335,
+            "high": 0.2859796875,
+            "low": 0.2571041666666667
+          },
+          "no_comm": {
+            "estimate": 0.28097916666666667,
+            "high": 0.2959375,
+            "low": 0.26649947916666666
+          },
+          "repair": {
+            "estimate": 0.2700416666666666,
+            "high": 0.2839583333333333,
+            "low": 0.25660416666666663
+          },
+          "repair_observe": {
+            "estimate": 0.2751041666666667,
+            "high": 0.29008333333333336,
+            "low": 0.260728125
+          },
+          "repair_send": {
+            "estimate": 0.2725,
+            "high": 0.28633333333333333,
+            "low": 0.2588953125
+          }
+        },
+        "window_s": 92.41962407465941
+      },
+      "s0.25-c4": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 1036.055,
+            "observe_decisions": 167.945,
+            "send_frames": 929.05
+          },
+          "repair_observe": {
+            "explore_decisions": 1059.13,
+            "observe_decisions": 144.87,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 901.985
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 45739.635,
+            "high": 52776.854625,
+            "low": 39495.390374999995
+          },
+          "dynamics_ids": {
+            "estimate": 761183.295,
+            "high": 808821.29975,
+            "low": 711425.913875
+          },
+          "no_comm": {
+            "estimate": 47999.490000000005,
+            "high": 55376.076375,
+            "low": 41429.68425
+          },
+          "repair": {
+            "estimate": 207511.215,
+            "high": 230117.158625,
+            "low": 185303.815125
+          },
+          "repair_observe": {
+            "estimate": 38856.9,
+            "high": 45604.81649999999,
+            "low": 33353.833875000004
+          },
+          "repair_send": {
+            "estimate": 204368.49,
+            "high": 227036.357,
+            "low": 182754.338
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.28486385610616605,
+            "high": 0.30433712316781697,
+            "low": 0.26564455498948353
+          },
+          "dynamics_ids": {
+            "estimate": 0.270274651110761,
+            "high": 0.28899181355368436,
+            "low": 0.25214585305640624
+          },
+          "no_comm": {
+            "estimate": 0.2807593044488256,
+            "high": 0.3006680853493943,
+            "low": 0.2612358386272623
+          },
+          "repair": {
+            "estimate": 0.27851578775345454,
+            "high": 0.2987323128234176,
+            "low": 0.2590597284582715
+          },
+          "repair_observe": {
+            "estimate": 0.277162448126515,
+            "high": 0.29757230280140196,
+            "low": 0.2569196018607463
+          },
+          "repair_send": {
+            "estimate": 0.28384112515519333,
+            "high": 0.30399807127996864,
+            "low": 0.2642262607079687
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.0049526584122358,
+            "high": 0.014190906517643341,
+            "level": 0.95,
+            "low": -0.003398366971778086
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.018775816748028418,
+            "high": 0.0377809636474024,
+            "level": 0.95,
+            "low": 2.220446049250313e-16
+          },
+          "repair/no_comm": {
+            "estimate": 0.048434085943189875,
+            "high": 0.0678956345456373,
+            "level": 0.95,
+            "low": 0.029433362719227887
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": 0.0039053698835901374,
+            "high": 0.01843501550133833,
+            "level": 0.95,
+            "low": -0.01101766305436751
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.0340131099781501,
+            "high": 0.04806537903692178,
+            "level": 0.95,
+            "low": 0.02074643319062333
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": -0.0025535110777319403,
+            "high": 0.015665040026355367,
+            "level": 0.95,
+            "low": -0.022360691366063598
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.027749453750910202,
+            "high": 0.04597031578489584,
+            "level": 0.95,
+            "low": 0.009889392318759556
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.284625,
+            "high": 0.2999588541666667,
+            "low": 0.26966666666666667
+          },
+          "dynamics_ids": {
+            "estimate": 0.27739583333333334,
+            "high": 0.2918546875,
+            "low": 0.2633958333333334
+          },
+          "no_comm": {
+            "estimate": 0.28604166666666664,
+            "high": 0.3009588541666667,
+            "low": 0.27139531249999993
+          },
+          "repair": {
+            "estimate": 0.2721875,
+            "high": 0.2860208333333333,
+            "low": 0.25874947916666663
+          },
+          "repair_observe": {
+            "estimate": 0.27631249999999996,
+            "high": 0.29112499999999997,
+            "low": 0.26199947916666666
+          },
+          "repair_send": {
+            "estimate": 0.2781041666666667,
+            "high": 0.29274999999999995,
+            "low": 0.26383281249999996
+          }
+        },
+        "window_s": 47.55665919183097
+      },
+      "s0.5-c2": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 934.38,
+            "observe_decisions": 269.62,
+            "send_frames": 1022.67
+          },
+          "repair_observe": {
+            "explore_decisions": 1028.52,
+            "observe_decisions": 175.48,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 1058.005
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 46292.58,
+            "high": 52159.867125000004,
+            "low": 41130.747375
+          },
+          "dynamics_ids": {
+            "estimate": 760262.6699999999,
+            "high": 806561.2806249999,
+            "low": 712967.9068750001
+          },
+          "no_comm": {
+            "estimate": 49508.16,
+            "high": 56321.0955,
+            "low": 43439.60025
+          },
+          "repair": {
+            "estimate": 211108.16499999998,
+            "high": 229595.51975,
+            "low": 192585.526
+          },
+          "repair_observe": {
+            "estimate": 37661.505000000005,
+            "high": 41272.939125,
+            "low": 34411.377
+          },
+          "repair_send": {
+            "estimate": 226567.615,
+            "high": 248881.14449999997,
+            "low": 204669.2505
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.3164776196868324,
+            "high": 0.3391395625668174,
+            "low": 0.2955396320320597
+          },
+          "dynamics_ids": {
+            "estimate": 0.3028861512279951,
+            "high": 0.3273494963427714,
+            "low": 0.2789858241659295
+          },
+          "no_comm": {
+            "estimate": 0.3085534104399136,
+            "high": 0.332838172613819,
+            "low": 0.284870548492147
+          },
+          "repair": {
+            "estimate": 0.27942993730847465,
+            "high": 0.3020493791826283,
+            "low": 0.25802791602683495
+          },
+          "repair_observe": {
+            "estimate": 0.2983441799518869,
+            "high": 0.32071479097042577,
+            "low": 0.27665959934625356
+          },
+          "repair_send": {
+            "estimate": 0.3044814956591547,
+            "high": 0.3269641338191425,
+            "low": 0.28229042139112687
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.000672243800418304,
+            "high": 0.008350539926197267,
+            "level": 0.95,
+            "low": -0.006542123679025289
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.013187985973471483,
+            "high": 0.0285845422795709,
+            "level": 0.95,
+            "low": -0.002354247046283618
+          },
+          "repair/no_comm": {
+            "estimate": 0.03308933373170009,
+            "high": 0.04949922606645599,
+            "level": 0.95,
+            "low": 0.015888642670337412
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": -0.007928037810642108,
+            "high": 0.00675279949765289,
+            "level": 0.95,
+            "low": -0.023257692741690903
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.012399163429937299,
+            "high": 0.024088484584574136,
+            "level": 0.95,
+            "low": 0.00021782000644802565
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": 0.007470651013874008,
+            "high": 0.02402824108503002,
+            "level": 0.95,
+            "low": -0.009622766481722356
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.027487302061547814,
+            "high": 0.04327748615400688,
+            "level": 0.95,
+            "low": 0.011446622196859596
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.2787291666666667,
+            "high": 0.2918333333333333,
+            "low": 0.2657291666666667
+          },
+          "dynamics_ids": {
+            "estimate": 0.27329166666666665,
+            "high": 0.28610468750000007,
+            "low": 0.26083333333333336
+          },
+          "no_comm": {
+            "estimate": 0.2789166666666667,
+            "high": 0.2922296875,
+            "low": 0.2657291666666667
+          },
+          "repair": {
+            "estimate": 0.2696875,
+            "high": 0.28239583333333335,
+            "low": 0.25712499999999994
+          },
+          "repair_observe": {
+            "estimate": 0.27545833333333336,
+            "high": 0.2889583333333333,
+            "low": 0.26225
+          },
+          "repair_send": {
+            "estimate": 0.27125,
+            "high": 0.2836671875,
+            "low": 0.2592291666666667
+          }
+        },
+        "window_s": 46.209812037329705
+      },
+      "s0.5-c4": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 926.2,
+            "observe_decisions": 277.8,
+            "send_frames": 920.975
+          },
+          "repair_observe": {
+            "explore_decisions": 986.25,
+            "observe_decisions": 217.75,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 959.19
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 46292.58,
+            "high": 52159.867125000004,
+            "low": 41130.747375
+          },
+          "dynamics_ids": {
+            "estimate": 760262.6699999999,
+            "high": 806561.2806249999,
+            "low": 712967.9068750001
+          },
+          "no_comm": {
+            "estimate": 49508.16,
+            "high": 56321.0955,
+            "low": 43439.60025
+          },
+          "repair": {
+            "estimate": 193838.495,
+            "high": 213206.41875,
+            "low": 174690.007
+          },
+          "repair_observe": {
+            "estimate": 34305.96000000001,
+            "high": 38846.903249999996,
+            "low": 30501.155625
+          },
+          "repair_send": {
+            "estimate": 211043.62,
+            "high": 231797.714875,
+            "low": 190270.514875
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.3164776196868324,
+            "high": 0.3391395625668174,
+            "low": 0.2955396320320597
+          },
+          "dynamics_ids": {
+            "estimate": 0.3028861512279951,
+            "high": 0.3273494963427714,
+            "low": 0.2789858241659295
+          },
+          "no_comm": {
+            "estimate": 0.3085534104399136,
+            "high": 0.332838172613819,
+            "low": 0.284870548492147
+          },
+          "repair": {
+            "estimate": 0.2669762411842865,
+            "high": 0.2851756774952296,
+            "low": 0.24926567843539726
+          },
+          "repair_observe": {
+            "estimate": 0.27398905669004603,
+            "high": 0.29054701696054397,
+            "low": 0.2576067371518161
+          },
+          "repair_send": {
+            "estimate": 0.3073834032917341,
+            "high": 0.33069947643880065,
+            "low": 0.2845355186242623
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": -0.002071772105068481,
+            "high": 0.004710827999729374,
+            "level": 0.95,
+            "low": -0.00864590131039346
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.006647247740682594,
+            "high": 0.023397551230781737,
+            "level": 0.95,
+            "low": -0.010253827212300982
+          },
+          "repair/no_comm": {
+            "estimate": 0.01590825009248975,
+            "high": 0.0338733507601153,
+            "level": 0.95,
+            "low": -0.002421376287987597
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": 0.007170064978713864,
+            "high": 0.02005877238793754,
+            "level": 0.95,
+            "low": -0.005582963589609551
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.016426193118756927,
+            "high": 0.028850775056132167,
+            "level": 0.95,
+            "low": 0.0038839036103080417
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": 0.013593248188811802,
+            "high": 0.030371530565336452,
+            "level": 0.95,
+            "low": -0.0033851733665253947
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.02278949315575296,
+            "high": 0.038914267999451406,
+            "level": 0.95,
+            "low": 0.005674388077502455
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.2821458333333333,
+            "high": 0.2951666666666667,
+            "low": 0.26937500000000003
+          },
+          "dynamics_ids": {
+            "estimate": 0.2789375,
+            "high": 0.29187552083333335,
+            "low": 0.2664166666666667
+          },
+          "no_comm": {
+            "estimate": 0.2815625,
+            "high": 0.2945838541666667,
+            "low": 0.26877083333333335
+          },
+          "repair": {
+            "estimate": 0.27708333333333335,
+            "high": 0.29004166666666664,
+            "low": 0.26435416666666667
+          },
+          "repair_observe": {
+            "estimate": 0.2769375,
+            "high": 0.2898125,
+            "low": 0.26433281249999996
+          },
+          "repair_send": {
+            "estimate": 0.2751458333333333,
+            "high": 0.28777135416666666,
+            "low": 0.26281197916666665
+          }
+        },
+        "window_s": 23.778329595915483
+      },
+      "s1-c2": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 770.845,
+            "observe_decisions": 433.155,
+            "send_frames": 1002.74
+          },
+          "repair_observe": {
+            "explore_decisions": 896.395,
+            "observe_decisions": 307.605,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 1054.185
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 47364.494999999995,
+            "high": 53020.63875,
+            "low": 42429.757125
+          },
+          "dynamics_ids": {
+            "estimate": 758155.015,
+            "high": 805263.8620000001,
+            "low": 709912.88475
+          },
+          "no_comm": {
+            "estimate": 50640.3,
+            "high": 56845.728375,
+            "low": 44973.76912499999
+          },
+          "repair": {
+            "estimate": 196187.555,
+            "high": 212398.85424999997,
+            "low": 180165.854125
+          },
+          "repair_observe": {
+            "estimate": 32793.825,
+            "high": 35442.0165,
+            "low": 30391.998375000003
+          },
+          "repair_send": {
+            "estimate": 219174.22,
+            "high": 237305.995,
+            "low": 201083.29425
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.3523758635871477,
+            "high": 0.3777330528982953,
+            "low": 0.32660306449526505
+          },
+          "dynamics_ids": {
+            "estimate": 0.31614478748234603,
+            "high": 0.34042658729266695,
+            "low": 0.29231567328383967
+          },
+          "no_comm": {
+            "estimate": 0.3375865778327345,
+            "high": 0.3658697332773484,
+            "low": 0.3086141268611496
+          },
+          "repair": {
+            "estimate": 0.2801496010812451,
+            "high": 0.29902846094371877,
+            "low": 0.2620536775707127
+          },
+          "repair_observe": {
+            "estimate": 0.2864122146490807,
+            "high": 0.3051450760684051,
+            "low": 0.2677615910295489
+          },
+          "repair_send": {
+            "estimate": 0.3355169437409148,
+            "high": 0.3644870314066691,
+            "low": 0.30590567093521
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": -0.0004941757853864637,
+            "high": 0.006015292095881516,
+            "level": 0.95,
+            "low": -0.007480623357474191
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.014363298556524073,
+            "high": 0.02792234921876692,
+            "level": 0.95,
+            "low": 0.0013314037282815359
+          },
+          "repair/no_comm": {
+            "estimate": 0.026261913166254813,
+            "high": 0.038632533125588744,
+            "level": 0.95,
+            "low": 0.013896378748770947
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": 0.0053594397598969445,
+            "high": 0.016407090059104245,
+            "level": 0.95,
+            "low": -0.005528830199404522
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.01736674902929758,
+            "high": 0.028046581384534686,
+            "level": 0.95,
+            "low": 0.007182049109789823
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": 0.015220808918107509,
+            "high": 0.029596208393548318,
+            "level": 0.95,
+            "low": 0.001643480258625123
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.027109071655488703,
+            "high": 0.04025938167276635,
+            "level": 0.95,
+            "low": 0.014005202812270781
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.29525,
+            "high": 0.3050625,
+            "low": 0.28556250000000005
+          },
+          "dynamics_ids": {
+            "estimate": 0.29154166666666664,
+            "high": 0.30156249999999996,
+            "low": 0.2815833333333333
+          },
+          "no_comm": {
+            "estimate": 0.29510416666666667,
+            "high": 0.3047708333333333,
+            "low": 0.28562499999999996
+          },
+          "repair": {
+            "estimate": 0.2873541666666667,
+            "high": 0.297375,
+            "low": 0.27758333333333335
+          },
+          "repair_observe": {
+            "estimate": 0.2899791666666667,
+            "high": 0.2995213541666667,
+            "low": 0.28056250000000005
+          },
+          "repair_send": {
+            "estimate": 0.2871041666666667,
+            "high": 0.29706302083333336,
+            "low": 0.27725
+          }
+        },
+        "window_s": 23.104906018664852
+      },
+      "s1-c4": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 809.49,
+            "observe_decisions": 394.51,
+            "send_frames": 842.135
+          },
+          "repair_observe": {
+            "explore_decisions": 1004.605,
+            "observe_decisions": 199.395,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 852.725
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 47364.494999999995,
+            "high": 53020.63875,
+            "low": 42429.757125
+          },
+          "dynamics_ids": {
+            "estimate": 758155.015,
+            "high": 805263.8620000001,
+            "low": 709912.88475
+          },
+          "no_comm": {
+            "estimate": 50640.3,
+            "high": 56845.728375,
+            "low": 44973.76912499999
+          },
+          "repair": {
+            "estimate": 170872.47499999998,
+            "high": 186271.34975,
+            "low": 155543.711625
+          },
+          "repair_observe": {
+            "estimate": 35975.49,
+            "high": 40541.27474999999,
+            "low": 32144.761499999997
+          },
+          "repair_send": {
+            "estimate": 196503.195,
+            "high": 213449.00624999998,
+            "low": 179357.21087500002
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.3523758635871477,
+            "high": 0.3777330528982953,
+            "low": 0.32660306449526505
+          },
+          "dynamics_ids": {
+            "estimate": 0.31614478748234603,
+            "high": 0.34042658729266695,
+            "low": 0.29231567328383967
+          },
+          "no_comm": {
+            "estimate": 0.3375865778327345,
+            "high": 0.3658697332773484,
+            "low": 0.3086141268611496
+          },
+          "repair": {
+            "estimate": 0.24432843997882897,
+            "high": 0.26092492522798494,
+            "low": 0.22859260265459755
+          },
+          "repair_observe": {
+            "estimate": 0.25975970399651316,
+            "high": 0.27575920020747585,
+            "low": 0.24414952776434223
+          },
+          "repair_send": {
+            "estimate": 0.33888636324032523,
+            "high": 0.3689348495946319,
+            "low": 0.30840790549957114
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.0015255530129671957,
+            "high": 0.007337682341571076,
+            "level": 0.95,
+            "low": -0.004369789129428046
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.017779644407111994,
+            "high": 0.03336748609805575,
+            "level": 0.95,
+            "low": 0.0025354063165590585
+          },
+          "repair/no_comm": {
+            "estimate": 0.02697455100201107,
+            "high": 0.04117380355807334,
+            "level": 0.95,
+            "low": 0.01349356170998472
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": 0.01847963040739209,
+            "high": 0.029008945698233517,
+            "level": 0.95,
+            "low": 0.00824548438333129
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.027667984189723493,
+            "high": 0.037019292201961686,
+            "level": 0.95,
+            "low": 0.01841491392026332
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": 0.02141957160856789,
+            "high": 0.035586006546224375,
+            "level": 0.95,
+            "low": 0.008282171894536576
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.03058040357811531,
+            "high": 0.042901154457883756,
+            "level": 0.95,
+            "low": 0.018604643120805047
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.2999791666666667,
+            "high": 0.3097088541666667,
+            "low": 0.2902916666666667
+          },
+          "dynamics_ids": {
+            "estimate": 0.29762500000000003,
+            "high": 0.3075833333333333,
+            "low": 0.28768697916666663
+          },
+          "no_comm": {
+            "estimate": 0.3004375,
+            "high": 0.310125,
+            "low": 0.29089583333333335
+          },
+          "repair": {
+            "estimate": 0.29233333333333333,
+            "high": 0.30254166666666665,
+            "low": 0.28202083333333333
+          },
+          "repair_observe": {
+            "estimate": 0.29212499999999997,
+            "high": 0.30197968750000004,
+            "low": 0.2824369791666666
+          },
+          "repair_send": {
+            "estimate": 0.29125,
+            "high": 0.30135416666666665,
+            "low": 0.28122916666666664
+          }
+        },
+        "window_s": 11.889164797957742
+      },
+      "s2-c2": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 770.16,
+            "observe_decisions": 433.84,
+            "send_frames": 821.625
+          },
+          "repair_observe": {
+            "explore_decisions": 1001.855,
+            "observe_decisions": 202.145,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 825.11
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 47394.09,
+            "high": 52174.558875,
+            "low": 43205.146125
+          },
+          "dynamics_ids": {
+            "estimate": 739212.855,
+            "high": 784993.1588750001,
+            "low": 692234.6506249999
+          },
+          "no_comm": {
+            "estimate": 48149.64,
+            "high": 53290.779375,
+            "low": 43527.939
+          },
+          "repair": {
+            "estimate": 166663.87,
+            "high": 180782.45475,
+            "low": 152894.932375
+          },
+          "repair_observe": {
+            "estimate": 36027.69,
+            "high": 40701.860625,
+            "low": 32293.842375
+          },
+          "repair_send": {
+            "estimate": 182541.15999999997,
+            "high": 197871.917375,
+            "low": 167959.13775
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.35424061118508754,
+            "high": 0.3808703516127984,
+            "low": 0.32850297343284535
+          },
+          "dynamics_ids": {
+            "estimate": 0.33282696016508395,
+            "high": 0.35943898995024903,
+            "low": 0.30735286736014983
+          },
+          "no_comm": {
+            "estimate": 0.3454197969523449,
+            "high": 0.37622226259586594,
+            "low": 0.3153113439160671
+          },
+          "repair": {
+            "estimate": 0.25607827443924736,
+            "high": 0.27253710246237794,
+            "low": 0.23946417838964495
+          },
+          "repair_observe": {
+            "estimate": 0.2762282073403284,
+            "high": 0.29611314113826837,
+            "low": 0.25657673710233175
+          },
+          "repair_send": {
+            "estimate": 0.3415004964314504,
+            "high": 0.37013160664806494,
+            "low": 0.3136569504729921
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.0003461165720615167,
+            "high": 0.004951573010217208,
+            "level": 0.95,
+            "low": -0.004242296056579397
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.02387934645999179,
+            "high": 0.036116205782026164,
+            "level": 0.95,
+            "low": 0.012394039260972581
+          },
+          "repair/no_comm": {
+            "estimate": 0.032258064516129004,
+            "high": 0.0442476471121912,
+            "level": 0.95,
+            "low": 0.020339640912074856
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": 0.014592933947772946,
+            "high": 0.022877443004544577,
+            "level": 0.95,
+            "low": 0.006307670587503871
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.02305136369929406,
+            "high": 0.03175183344518817,
+            "level": 0.95,
+            "low": 0.014269364767883657
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": 0.014942047200111941,
+            "high": 0.02407334606649234,
+            "level": 0.95,
+            "low": 0.005890978813158707
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.023397480271355353,
+            "high": 0.03093647998205976,
+            "level": 0.95,
+            "low": 0.015665852026144508
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.30085416666666664,
+            "high": 0.3088125,
+            "low": 0.292875
+          },
+          "dynamics_ids": {
+            "estimate": 0.29837500000000006,
+            "high": 0.30629166666666663,
+            "low": 0.29022916666666665
+          },
+          "no_comm": {
+            "estimate": 0.3009583333333333,
+            "high": 0.3091041666666666,
+            "low": 0.29285416666666664
+          },
+          "repair": {
+            "estimate": 0.29125,
+            "high": 0.29972916666666666,
+            "low": 0.282625
+          },
+          "repair_observe": {
+            "estimate": 0.2940208333333333,
+            "high": 0.30200052083333334,
+            "low": 0.28589583333333335
+          },
+          "repair_send": {
+            "estimate": 0.29391666666666666,
+            "high": 0.302,
+            "low": 0.28579166666666667
+          }
+        },
+        "window_s": 11.552453009332426
+      },
+      "s2-c4": {
+        "actions": {
+          "age_revisit": {},
+          "dynamics_ids": {},
+          "no_comm": {},
+          "repair": {
+            "explore_decisions": 878.03,
+            "observe_decisions": 325.97,
+            "send_frames": 0.0
+          },
+          "repair_observe": {
+            "explore_decisions": 878.03,
+            "observe_decisions": 325.97,
+            "send_frames": 0.0
+          },
+          "repair_send": {
+            "explore_decisions": 1204.0,
+            "observe_decisions": 0.0,
+            "send_frames": 0.0
+          }
+        },
+        "bytes": {
+          "age_revisit": {
+            "estimate": 47394.09,
+            "high": 52174.558875,
+            "low": 43205.146125
+          },
+          "dynamics_ids": {
+            "estimate": 739212.855,
+            "high": 784993.1588750001,
+            "low": 692234.6506249999
+          },
+          "no_comm": {
+            "estimate": 48149.64,
+            "high": 53290.779375,
+            "low": 43527.939
+          },
+          "repair": {
+            "estimate": 30153.81,
+            "high": 34620.86812499999,
+            "low": 26425.76325
+          },
+          "repair_observe": {
+            "estimate": 30153.81,
+            "high": 34620.86812499999,
+            "low": 26425.76325
+          },
+          "repair_send": {
+            "estimate": 48149.64,
+            "high": 53290.779375,
+            "low": 43527.939
+          }
+        },
+        "coverage": {
+          "age_revisit": {
+            "estimate": 0.35424061118508754,
+            "high": 0.3808703516127984,
+            "low": 0.32850297343284535
+          },
+          "dynamics_ids": {
+            "estimate": 0.33282696016508395,
+            "high": 0.35943898995024903,
+            "low": 0.30735286736014983
+          },
+          "no_comm": {
+            "estimate": 0.3454197969523449,
+            "high": 0.37622226259586594,
+            "low": 0.3153113439160671
+          },
+          "repair": {
+            "estimate": 0.20591020776255153,
+            "high": 0.21409487327191506,
+            "low": 0.19753798303221473
+          },
+          "repair_observe": {
+            "estimate": 0.20591020776255153,
+            "high": 0.21409487327191506,
+            "low": 0.19753798303221473
+          },
+          "repair_send": {
+            "estimate": 0.3454197969523449,
+            "high": 0.37622226259586594,
+            "low": 0.3153113439160671
+          }
+        },
+        "gain": {
+          "age_revisit/no_comm": {
+            "estimate": 0.00218355510064816,
+            "high": 0.007457235365512838,
+            "level": 0.95,
+            "low": -0.002641383528940783
+          },
+          "repair/dynamics_ids": {
+            "estimate": 0.02325422337733396,
+            "high": 0.03260119112998695,
+            "level": 0.95,
+            "low": 0.014116969648392697
+          },
+          "repair/no_comm": {
+            "estimate": 0.025520300238826232,
+            "high": 0.03501430079495963,
+            "level": 0.95,
+            "low": 0.016273755768504015
+          },
+          "repair_observe/dynamics_ids": {
+            "estimate": 0.02325422337733396,
+            "high": 0.03260119112998695,
+            "level": 0.95,
+            "low": 0.014116969648392697
+          },
+          "repair_observe/no_comm": {
+            "estimate": 0.025520300238826232,
+            "high": 0.03501430079495963,
+            "level": 0.95,
+            "low": 0.016273755768504015
+          },
+          "repair_send/dynamics_ids": {
+            "estimate": -0.0023254223377333627,
+            "high": 0.005462660777677165,
+            "level": 0.95,
+            "low": -0.010108034090225109
+          },
+          "repair_send/no_comm": {
+            "estimate": 0.0,
+            "high": 0.0,
+            "level": 0.95,
+            "low": 0.0
+          }
+        },
+        "loss": {
+          "age_revisit": {
+            "estimate": 0.30464583333333334,
+            "high": 0.3125208333333333,
+            "low": 0.2966875
+          },
+          "dynamics_ids": {
+            "estimate": 0.3046041666666667,
+            "high": 0.31254166666666666,
+            "low": 0.29639583333333336
+          },
+          "no_comm": {
+            "estimate": 0.3053125,
+            "high": 0.3134583333333333,
+            "low": 0.29716666666666663
+          },
+          "repair": {
+            "estimate": 0.29752083333333335,
+            "high": 0.30566718750000005,
+            "low": 0.2893328125
+          },
+          "repair_observe": {
+            "estimate": 0.29752083333333335,
+            "high": 0.30566718750000005,
+            "low": 0.2893328125
+          },
+          "repair_send": {
+            "estimate": 0.3053125,
+            "high": 0.3134583333333333,
+            "low": 0.29716666666666663
+          }
+        },
+        "window_s": 5.944582398978871
+      }
+    },
+    "window_rank_correlation": -0.2142857142857143
+  },
+  "draws": 10000,
+  "dry_run": false,
+  "families": {
+    "loop": 50,
+    "tree": 50
+  },
+  "frozen_sha256": "98f7261f4e9d593240dbb71936a0069ecc737db123dbb6fa9ca5b008664235d9",
+  "hypotheses": {
+    "S2-H1": {
+      "estimate": 0.02216923589851258,
+      "high": 0.030017850905083705,
+      "level": 0.9833333333333333,
+      "low": 0.014406635831483963,
+      "outcome": "supported"
+    },
+    "S2-H2": {
+      "estimate": 0.0031752347720723773,
+      "high": 0.02052251412089747,
+      "level": 0.9833333333333333,
+      "low": -0.014278573225006362,
+      "outcome": "against"
+    },
+    "S2-H3": {
+      "estimate": -0.008430003709367195,
+      "high": 0.001949875181866462,
+      "level": 0.9833333333333333,
+      "low": -0.01899455081017266,
+      "outcome": "consistent"
+    }
+  },
+  "prefix_b": 100,
+  "seed": 20261107,
+  "status": [
+    "ok"
+  ],
+  "terminal": "complete"
+}

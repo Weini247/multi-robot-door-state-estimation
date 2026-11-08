@@ -1,0 +1,74 @@
+{
+  "analysis_code": {
+    "src/argus/evaluation/statistics.py": "c8259d08eb39aced87476018592ea23698a3dff7713417e5add7448f1fd0de05",
+    "tools/analyze_s2.py": "646df298c6246bd687c206023fd19fdbc3dd4c411ed7d8da3e4d350e06f57bad"
+  },
+  "bound_code": {
+    "src/argus/policies/repair.py": "19551b7f64548dc855f343d26ffc85d25bffe46b81b8f65bc533a6b266b3e481",
+    "src/argus/replay/interventions.py": "d620b2cf5faa9170d6ba469320a494d537621edc5b0126d2e1d849f7b93c2e66"
+  },
+  "design": {
+    "arms": {
+      "age_revisit": {
+        "config_id": "a1200",
+        "params": {
+          "max_age_ticks": 1200
+        }
+      },
+      "dynamics_ids": {
+        "config_id": "p20",
+        "params": {
+          "send_period_ticks": 20
+        }
+      },
+      "no_comm": {
+        "config_id": "c0",
+        "params": {}
+      },
+      "repair": {
+        "config_id": "h5.0",
+        "params": {
+          "horizon_s": 5.0
+        }
+      },
+      "repair_observe": {
+        "config_id": "h5.0",
+        "params": {
+          "horizon_s": 5.0
+        }
+      },
+      "repair_send": {
+        "config_id": "h5.0",
+        "params": {
+          "horizon_s": 5.0
+        }
+      }
+    },
+    "b": 100,
+    "b_minimum": 40,
+    "circulation": "direct (hop limit 0)",
+    "cost_ratios": [
+      2,
+      4
+    ],
+    "list": "s2_test",
+    "rate_scales": [
+      0,
+      0.25,
+      0.5,
+      1,
+      2
+    ],
+    "replacement": "an invalid scenario is replaced by the next unused entry of the same family behind the first b and takes the replaced building's slot; logged (amendment 01 O2, amendment 03 A1)",
+    "replicates": 2,
+    "sensor": "independent, marginal error .14",
+    "tuning": "none: the configurations selected for X1/X2 (tuned at rate scale 1, cost ratio 4) are reused everywhere; the two new arms use repair's h5.0"
+  },
+  "driver_sha256": "8f5271340446f371240e23b780aea73a93f9a3ab3c8613980a52dee2f9359519",
+  "preregistration_sha256": "33ee3a51b2cee491e12f7488bf4d090c2c583ebbc9635df9e0e648a258c8bbd4",
+  "schema": "argus-s2-frozen-v1",
+  "source_tree_sha256": "88de3836c56e4c670faf5843e0b79190d46ac3a3225fbafd93094eb880d6e255",
+  "split_manifest_sha256": "7a9c1ba6b2a0f3553dd1cdcf9b0cbfb3283bae9f76e8afe79dd426002ac074ba",
+  "status": "frozen before any s2_test episode; a run also needs the approval file",
+  "x1x2_frozen_sha256": "b16b05936bedde387e3b8637be8b72b7d818e8f5a93c48be096584d7f58a359c"
+}

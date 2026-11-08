@@ -248,3 +248,85 @@ def regenerate(entry: SplitEntry, params: FloorplanParams) -> Floorplan:
     ):
         raise SplitError(f"{entry.building_id} does not regenerate to its manifest hashes")
     return plan
+
+
+# --- follow-up manifests (E09, change request 2026-11-07) ------------------------------
+
+SEED_BASE_V2 = {"tree": 11_000_000, "loop": 21_000_000}
+QUOTAS_V2: dict[str, dict[str, int]] = {"s2_test": {"tree": 50, "loop": 50}}
+ASSIGNMENT_SEED_V2 = 20261107
+
+
+def build_followup_manifest(
+    prior: tuple[SplitEntry, ...],
+    params: FloorplanParams | None = None,
+    quotas: Mapping[str, Mapping[str, int]] = QUOTAS_V2,
+    seed_base: Mapping[str, int] = SEED_BASE_V2,
+    assignment_seed: int = ASSIGNMENT_SEED_V2,
+    iou_threshold: float = IOU_THRESHOLD,
+) -> dict[str, Any]:
+    """Fresh buildings from new seed streams. Every prior building (regenerated to its
+    hashes) enters the duplicate index first, so no new building is a near duplicate of
+    any building of an earlier manifest. Families alternate within a list."""
+    p = params if params is not None else FloorplanParams()
+    index = DuplicateIndex(iou_threshold)
+    for entry in prior:
+        index.add(regenerate(entry, p))
+    need: dict[str, int] = {}
+    for per_split in quotas.values():
+        for family, n in per_split.items():
+            need[family] = need.get(family, 0) + n
+    accepted: dict[str, list[Floorplan]] = {f: [] for f in need}
+    rejected = dict.fromkeys(need, 0)
+    counter = dict.fromkeys(need, 0)
+    while any(len(accepted[f]) < need[f] for f in need):
+        for family in sorted(need):
+            if len(accepted[family]) >= need[family]:
+                continue
+            plan = generate_floorplan(family, seed_base[family] + counter[family], p)
+            counter[family] += 1
+            if index.conflicts(plan):
+                rejected[family] += 1
+            else:
+                index.add(plan)
+                accepted[family].append(plan)
+    rng = KeyedRandom(assignment_seed)
+    pools = {
+        f: sorted(plans, key=lambda pl: (rng.uniform("split.assign", f, pl.seed), pl.seed))
+        for f, plans in accepted.items()
+    }
+    entries: list[SplitEntry] = []
+    taken = dict.fromkeys(need, 0)
+    for split, per in quotas.items():
+        chosen = {f: pools[f][taken[f] : taken[f] + n] for f, n in per.items()}
+        for f, n in per.items():
+            taken[f] += n
+        position = 0
+        for i in range(max(len(v) for v in chosen.values())):
+            for family in sorted(chosen):
+                if i < len(chosen[family]):
+                    pl = chosen[family][i]
+                    entries.append(
+                        SplitEntry(
+                            split,
+                            position,
+                            family,
+                            pl.seed,
+                            pl.attempt,
+                            pl.spec.scenario_hash,
+                            graph_hash(pl.graph),
+                        )
+                    )
+                    position += 1
+    return {
+        "schema": "argus-splits-v2",
+        "params": p.to_json(),
+        "quotas": {s: dict(q) for s, q in quotas.items()},
+        "seed_base": dict(seed_base),
+        "assignment_seed": assignment_seed,
+        "iou_threshold": iou_threshold,
+        "prior_buildings": len(prior),
+        "rejected_near_duplicates": rejected,
+        "fields": ["split", "position", "family", "seed", "attempt", "scenario_hash", "graph_hash"],
+        "entries": [e.to_json() for e in entries],
+    }
