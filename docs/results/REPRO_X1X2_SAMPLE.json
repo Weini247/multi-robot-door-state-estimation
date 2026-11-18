@@ -1,0 +1,24 @@
+{
+  "episodes": {
+    "extra_count": 0,
+    "extra_in_repro": [],
+    "missing_count": 0,
+    "missing_in_repro": [],
+    "original_episodes": 32,
+    "passed": true,
+    "raw_difference_count": 0,
+    "raw_differences": [],
+    "repro_episodes": 32,
+    "reproduced_episodes": 32,
+    "row_difference_count": 0,
+    "row_differences": {},
+    "sample": true,
+    "volatile_row_fields": [
+      "cpu_s",
+      "peak_rss_bytes",
+      "process_wall_s",
+      "raw_sha256",
+      "wall_s"
+    ]
+  }
+}

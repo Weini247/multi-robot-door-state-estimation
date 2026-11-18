@@ -1,0 +1,28 @@
+{
+  "analysis": {
+    "differing_top_level_keys": [],
+    "identical": true,
+    "original": "S2_v1.json"
+  },
+  "episodes": {
+    "extra_count": 0,
+    "extra_in_repro": [],
+    "missing_count": 0,
+    "missing_in_repro": [],
+    "original_episodes": 12000,
+    "passed": true,
+    "raw_difference_count": 0,
+    "raw_differences": [],
+    "repro_episodes": 12000,
+    "reproduced_episodes": 12000,
+    "row_difference_count": 0,
+    "row_differences": {},
+    "volatile_row_fields": [
+      "cpu_s",
+      "peak_rss_bytes",
+      "process_wall_s",
+      "raw_sha256",
+      "wall_s"
+    ]
+  }
+}

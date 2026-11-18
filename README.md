@@ -123,6 +123,8 @@ python -m uv run --locked python tools/test_batch.py freeze --check   # frozen r
 python -m uv run --locked python tools/test_batch.py probe --out runs/probe   # small calibration-only batch
 ```
 
+**Reproduction check.** Study 2 was rerun in full from a fresh clone of this repository: all 12 000 episodes and the analysis report came out identical. Samples of X1/X2 and X3 at their original commits matched as well (32/32 each). [docs/REPRODUCING.md](docs/REPRODUCING.md) has the steps and the limits; the comparison reports are `docs/results/REPRO_*.json`.
+
 Some tests check internal audit reports that live only in the private research repository (written in German). Those tests are skipped here and say why.
 
 ## Limitations
